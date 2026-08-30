@@ -1,0 +1,49 @@
+{#-
+  giscus 评论 + 点赞（基于 GitHub Discussions）。
+  仅当页面开启评论（page.meta.comments）且 mkdocs.yml 的 extra.giscus 已填好
+  repo_id 与 category_id 时才渲染；未配置前自动隐藏，不影响页面其余部分。
+-#}
+{% set giscus = config.extra.giscus | default({}) %}
+{% if page.meta.comments and giscus.repo and giscus.repo_id and giscus.category_id %}
+  <h2 id="__comments">评论</h2>
+  <script src="https://giscus.app/client.js"
+          data-repo="{{ giscus.repo }}"
+          data-repo-id="{{ giscus.repo_id }}"
+          data-category="{{ giscus.category | default('Comments') }}"
+          data-category-id="{{ giscus.category_id }}"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="top"
+          data-theme="light"
+          data-lang="zh-CN"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+
+  <!-- 让 giscus 主题跟随 Material 明暗色切换 -->
+  <script>
+    var giscusToggle = function () {
+      var palette = __md_get("__palette")
+      var scheme = palette && palette.color && palette.color.scheme === "slate"
+        ? "transparent_dark"
+        : "light"
+      var frame = document.querySelector(".giscus-frame")
+      if (frame) {
+        frame.contentWindow.postMessage(
+          { giscus: { setConfig: { theme: scheme } } },
+          "https://giscus.app"
+        )
+      }
+    }
+    document.addEventListener("DOMContentLoaded", giscusToggle)
+    var ref = document.querySelector("[data-md-component=palette]")
+    if (ref) {
+      ref.addEventListener("change", function () {
+        setTimeout(giscusToggle, 50)
+      })
+    }
+  </script>
+{% endif %}

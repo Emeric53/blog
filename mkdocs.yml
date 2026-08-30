@@ -1,0 +1,126 @@
+site_name: Nullspace
+site_author: Menglei Liang
+site_description: 梁梦磊的个人记录——生活、阅读、技术，以及一些尚未成为结论的东西。
+site_url: https://emeric53.github.io/blog/
+
+repo_name: Emeric53/blog
+repo_url: https://github.com/Emeric53/blog
+copyright: Copyright &copy; 2024 ~ now · Menglei Liang
+
+theme:
+  name: material
+  language: zh
+  custom_dir: overrides
+  favicon: assets/images/favicon.svg
+  icon:
+    logo: material/circle-slice-8
+    repo: fontawesome/brands/github
+  features:
+    - navigation.indexes
+    - navigation.sections
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - toc.follow
+    - navigation.instant
+    - navigation.instant.prefetch
+    - navigation.instant.progress
+  palette:
+    - scheme: default
+      toggle:
+        icon: material/weather-night
+        name: 进入夜晚
+    - scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: 回到白天
+  font: false
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Emeric53
+    - icon: fontawesome/solid/envelope
+      link: mailto:todayislml@gmail.com
+  giscus:
+    repo: ""
+    repo_id: ""
+    category: "Comments"
+    category_id: ""
+
+plugins:
+  - search:
+      lang:
+        - en
+        - zh
+  - awesome-pages
+  - blog:
+      blog_dir: monthly
+      post_url_format: "{slug}"
+      post_readtime: false
+      authors: false
+      categories: false
+      pagination_per_page: 12
+  - blog:
+      blog_dir: life
+      post_url_format: "{slug}"
+      post_readtime: false
+      authors: false
+      categories: false
+      pagination_per_page: 12
+  - tags
+  - glightbox
+  - git-revision-date-localized:
+      type: timeago
+      locale: zh
+      enable_creation_date: true
+      enable_git_follow: false
+      fallback_to_build_date: true
+  - rss:
+      match_path: (monthly|life)/.*|technology/[^/]+\.md
+      date_from_meta:
+        as_creation: date
+      categories:
+        - categories
+        - tags
+  - minify:
+      minify_html: true
+
+hooks:
+  - hooks/reading_time.py
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js
+  - javascripts/pangu_init.js
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.arithmatex:
+      generic: true
+
+nav:
+  - 首页: index.md
+  - 月记: monthly/index.md
+  - 生活: life/index.md
+  - 技术: technology/index.md
+  - 分享: Share/index.md
+  - 关于: about.md
+  - 标签: tags.md

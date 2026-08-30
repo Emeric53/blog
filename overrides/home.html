@@ -1,0 +1,117 @@
+{% extends "main.html" %}
+
+{% block header %}{% endblock %}
+{% block tabs %}{% endblock %}
+{% block site_nav %}{% endblock %}
+
+{% block container %}
+  <div class="null-home">
+    <nav class="null-nav" aria-label="首页导航">
+      <a class="null-mark" href="{{ '.' | url }}" aria-label="Nullspace 首页">
+        <span class="null-mark__orbit"></span>
+        <span>NULLSPACE</span>
+      </a>
+      <div class="null-nav__links">
+        <a href="{{ 'monthly/' | url }}">月记</a>
+        <a href="{{ 'life/' | url }}">生活</a>
+        <a href="{{ 'technology/' | url }}">技术</a>
+        <a href="{{ 'Share/' | url }}">分享</a>
+        <a href="{{ 'about/' | url }}">关于</a>
+      </div>
+    </nav>
+
+    <main class="null-main">
+      <section class="null-hero" aria-labelledby="null-title">
+        <div class="null-hero__copy">
+          <p class="null-kicker">Menglei Liang · Personal notes</p>
+          <h1 id="null-title">让没有成为结论的东西，<br>也有地方留下来。</h1>
+          <p class="null-intro">
+            在测量世界之外，也记录被世界改变的时刻。这里关于生活、技术、阅读、音乐，
+            以及那些仍在形成中的判断和感受。
+          </p>
+        </div>
+        <aside class="null-now" aria-label="此刻">
+          <span class="null-now__label">此刻 / NOW</span>
+          <p>正在把个人记录和学术身份分开，为文字重新留出一块更自由的地方。</p>
+          <span class="null-now__date">2026 · late summer</span>
+        </aside>
+        <div class="null-hero__index" aria-hidden="true">01—26</div>
+      </section>
+
+      <section class="null-section null-section--writing" aria-labelledby="recent-title">
+        <div class="null-section__heading">
+          <p>RECENTLY LEFT BEHIND</p>
+          <h2 id="recent-title">最近留下的</h2>
+        </div>
+        <div class="null-writing">
+          <a class="null-entry null-entry--lead" href="{{ 'monthly/2026-年的春天我不知道会是这样/' | url }}">
+            <span class="null-entry__number">01</span>
+            <span class="null-entry__meta">月记 · 2026.04.16</span>
+            <strong>2026 年的春天，我不知道会是这样</strong>
+            <span class="null-entry__excerpt">新的开始、玩不转的人际关系，以及对下一个夏天的期待。</span>
+            <span class="null-entry__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="null-entry" href="{{ 'monthly/2026年1月记录/' | url }}">
+            <span class="null-entry__number">02</span>
+            <span class="null-entry__meta">月记 · 2026.02.03</span>
+            <strong>2026 年 1 月记录</strong>
+            <span class="null-entry__excerpt">对时间、关系、情绪与自我的感知。</span>
+            <span class="null-entry__arrow" aria-hidden="true">↗</span>
+          </a>
+          <a class="null-entry" href="{{ 'technology/agentic coding/' | url }}">
+            <span class="null-entry__number">03</span>
+            <span class="null-entry__meta">技术 · 长记录</span>
+            <strong>Agentic coding</strong>
+            <span class="null-entry__excerpt">工具会不断变化，重要的是怎样借它们真正完成事情。</span>
+            <span class="null-entry__arrow" aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="null-section null-section--streams" aria-labelledby="streams-title">
+        <div class="null-section__heading">
+          <p>FOUR STREAMS</p>
+          <h2 id="streams-title">几条支流</h2>
+        </div>
+        <div class="null-streams">
+          <a href="{{ 'monthly/' | url }}">
+            <span>01</span>
+            <strong>月记</strong>
+            <p>用月份和季节保存生活的密度。</p>
+          </a>
+          <a href="{{ 'life/' | url }}">
+            <span>02</span>
+            <strong>生活</strong>
+            <p>不需要被证明有用的感受与经验。</p>
+          </a>
+          <a href="{{ 'technology/' | url }}">
+            <span>03</span>
+            <strong>技术</strong>
+            <p>工具、系统，以及我理解它们的过程。</p>
+          </a>
+          <a href="{{ 'Share/' | url }}">
+            <span>04</span>
+            <strong>分享</strong>
+            <p>最近读到、听到和想再次找到的东西。</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="null-quote" aria-label="网站说明">
+        <p>“Summer wants some more.”</p>
+        <span>愿望、混乱、秩序，以及偶尔清澈的时刻。</span>
+      </section>
+    </main>
+
+    <footer class="null-footer">
+      <p>Nullspace · Menglei Liang</p>
+      <div>
+        <a href="{{ 'feed_rss_created.xml' | url }}">RSS</a>
+        <a href="https://github.com/Emeric53">GitHub</a>
+        <span>2024—2026</span>
+      </div>
+    </footer>
+  </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
