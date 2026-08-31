@@ -11,10 +11,10 @@ python = "3.10.*"
 cairo = ">=1.18.4,<2"
 
 [tasks]
-deploy = "mkdocs gh-deploy --force"
+deploy = "PYTHONTZPATH=\"$PIXI_PROJECT_ROOT/.pixi/envs/default/share/zoneinfo\" python -m mkdocs gh-deploy --force"
 # PYTHONDONTWRITEBYTECODE：避免 hook 生成 .pyc 触发 mkdocs serve 的重载循环
-start = { cmd = "mkdocs serve", env = { PYTHONDONTWRITEBYTECODE = "1" } }
-build = "mkdocs build"
+start = { cmd = "PYTHONTZPATH=\"$PIXI_PROJECT_ROOT/.pixi/envs/default/share/zoneinfo\" python -m mkdocs serve", env = { PYTHONDONTWRITEBYTECODE = "1" } }
+build = "PYTHONTZPATH=\"$PIXI_PROJECT_ROOT/.pixi/envs/default/share/zoneinfo\" python -m mkdocs build"
 
 [pypi-dependencies]
 mkdocs-material = ">=9.7.1, <10"

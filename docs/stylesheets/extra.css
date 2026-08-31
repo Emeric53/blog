@@ -201,6 +201,60 @@ body {
   border-top: 1px solid var(--null-line);
 }
 
+/* Blog indexes: keep the Material structure, but make it read like a journal. */
+
+.md-post--excerpt {
+  margin: 0;
+  padding: 2.4rem 0;
+  border-top: 1px solid var(--null-line);
+}
+
+.md-post--excerpt .md-post__meta {
+  color: var(--null-faint);
+  font-family: var(--null-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.06em;
+}
+
+.md-post--excerpt .md-post__content h2 {
+  margin: 0.65rem 0 0.9rem;
+  padding: 0;
+  border: 0;
+  font-family: var(--null-serif);
+  font-size: clamp(1.45rem, 3vw, 2rem);
+  line-height: 1.35;
+}
+
+.md-post--excerpt .md-post__content h2 a {
+  color: var(--null-ink);
+  text-decoration: none;
+}
+
+.md-post--excerpt .md-post__content h2 a:hover {
+  color: var(--null-rust);
+}
+
+.md-post--excerpt .md-post__content > p {
+  max-width: 40rem;
+  margin: 0;
+  color: var(--null-muted);
+  font-family: var(--null-serif);
+  font-size: 0.86rem;
+  line-height: 1.85;
+}
+
+.md-post--excerpt .md-post__action {
+  margin-top: 1rem;
+}
+
+.md-post--excerpt .md-post__action a {
+  color: var(--null-rust);
+  font-family: var(--null-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 /* The personal landing page */
 
 .md-main__inner:has(.null-home) {
@@ -214,9 +268,7 @@ body {
   min-height: 100vh;
   overflow: hidden;
   color: var(--null-ink);
-  background:
-    linear-gradient(90deg, transparent calc(50% - 0.5px), var(--null-line) 50%, transparent calc(50% + 0.5px)),
-    var(--null-paper);
+  background: var(--null-paper);
 }
 
 .null-home a {
@@ -359,7 +411,7 @@ body {
   max-width: 12em;
   margin: 0;
   font-family: var(--null-serif);
-  font-size: clamp(2.9rem, 7.2vw, 6.6rem);
+  font-size: clamp(2.9rem, 5.3vw, 4.7rem);
   font-weight: 500;
   letter-spacing: -0.075em;
   line-height: 1.08;
@@ -623,26 +675,26 @@ body {
   }
 
   .null-nav {
+    flex-wrap: wrap;
+    gap: 0.8rem;
     min-height: 4.5rem;
+    padding: 0.9rem 0;
   }
 
   .null-nav__links {
-    gap: 1rem;
-  }
-
-  .null-nav__links a:nth-child(3),
-  .null-nav__links a:nth-child(4),
-  .null-nav__links a:nth-child(5) {
-    display: none;
+    width: 100%;
+    justify-content: space-between;
+    gap: 0.65rem;
+    font-size: 0.58rem;
   }
 
   .null-hero {
     min-height: auto;
-    padding: 5.5rem 0 4rem;
+    padding: 4rem 0 4rem;
   }
 
   .null-hero h1 {
-    font-size: clamp(2.65rem, 14vw, 4.4rem);
+    font-size: clamp(2.2rem, 9vw, 3rem);
   }
 
   .null-hero__index {
