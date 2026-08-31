@@ -1,0 +1,41 @@
+{% extends "main.html" %}
+
+{% set journal_section = page.file.src_uri.split('/')[0] | lower %}
+
+{% block container %}
+  <div class="md-content journal-index journal-index--{{ journal_section }}" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset journal-index__intro">
+        {{ page.content }}
+      </header>
+      <div class="journal-index__entries">
+        {% for entry in page.meta.entries %}
+          <article class="md-post md-post--excerpt">
+            <header class="md-post__header">
+              <div class="md-post__meta md-meta">
+                <span>{{ entry.label }}</span>
+              </div>
+            </header>
+            <div class="md-post__content md-typeset">
+              <h2>
+                {% if entry.pending %}
+                  <span>{{ entry.title }}</span>
+                {% else %}
+                  <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+                {% endif %}
+              </h2>
+              {% if entry.description %}<p>{{ entry.description }}</p>{% endif %}
+              <nav class="md-post__action" aria-label="{{ entry.title }}">
+                {% if entry.pending %}
+                  <span>尚待记录</span>
+                {% else %}
+                  <a href="{{ entry.url | url }}">进入阅读</a>
+                {% endif %}
+              </nav>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
