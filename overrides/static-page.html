@@ -1,0 +1,11 @@
+{% extends "main.html" %}
+
+{% set static_section = page.file.src_uri.split('/')[0] | lower %}
+
+{% block container %}
+  <div class="md-content quiet-page quiet-page--{{ static_section | replace('.md', '') }}" data-md-component="content">
+    <article class="quiet-page__body md-typeset">
+      {{ page.content }}
+    </article>
+  </div>
+{% endblock %}

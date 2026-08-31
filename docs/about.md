@@ -1,3 +1,9 @@
+---
+template: static-page.html
+hide_reading_time: true
+comments: false
+---
+
 # 关于这里
 
 这里是梁梦磊的个人记录。
@@ -10,4 +16,4 @@
 
 - [GitHub](https://github.com/Emeric53)
 - [Email](mailto:todayislml@gmail.com)
-- [RSS](feed_rss_created.xml)
+- [RSS](https://emeric53.github.io/blog/feed_rss_created.xml)
