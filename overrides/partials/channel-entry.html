@@ -1,0 +1,28 @@
+{% macro render_channel_entry(label, title, url, summary, pending=false, summary_html=false) %}
+  <article class="journal-entry">
+    <p class="journal-entry__meta">{{ label }}</p>
+    <div class="journal-entry__body">
+      <h2 class="journal-entry__title">
+        {% if pending %}
+          <span>{{ title }}</span>
+        {% else %}
+          <a href="{{ url }}">{{ title }}</a>
+        {% endif %}
+      </h2>
+      <div class="journal-entry__summary">
+        {% if summary_html %}
+          {{ summary }}
+        {% elif summary %}
+          <p>{{ summary }}</p>
+        {% endif %}
+      </div>
+      <div class="journal-entry__action">
+        {% if pending %}
+          <span>尚待记录</span>
+        {% else %}
+          <a href="{{ url }}">阅读全文</a>
+        {% endif %}
+      </div>
+    </div>
+  </article>
+{% endmacro %}

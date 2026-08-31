@@ -1,4 +1,5 @@
 {% extends "main.html" %}
+{% from "partials/channel-entry.html" import render_channel_entry %}
 
 {% set journal_section = page.file.src_uri.split('/')[0] | lower %}
 
@@ -10,7 +11,15 @@
       </header>
       <div class="journal-index__entries">
         {% for post in posts %}
-          {% include "partials/post.html" %}
+          {% set post_heading = post.toc | first %}
+          {{ render_channel_entry(
+            post.config.date.created | date,
+            post_heading.title if post_heading else post.post.title,
+            post.url | url,
+            post.content,
+            false,
+            true
+          ) }}
         {% endfor %}
       </div>
       {% if pagination %}
