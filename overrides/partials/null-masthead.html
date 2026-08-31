@@ -15,7 +15,28 @@
 
     {% if config.theme.palette and not config.theme.palette is mapping %}
       <div class="journal-palette" aria-label="切换明暗主题">
-        {% include "partials/palette.html" %}
+        <form class="journal-theme" data-md-component="palette">
+          {% for option in config.theme.palette %}
+            {% set scheme = option.scheme | d("default", true) %}
+            {% set primary = option.primary | d("indigo", true) %}
+            {% set accent = option.accent | d("indigo", true) %}
+            <input class="md-option"
+                   data-md-color-media="{{ option.media }}"
+                   data-md-color-scheme="{{ scheme | replace(' ', '-') }}"
+                   data-md-color-primary="{{ primary | replace(' ', '-') }}"
+                   data-md-color-accent="{{ accent | replace(' ', '-') }}"
+                   type="radio"
+                   name="__palette"
+                   id="__palette_{{ loop.index0 }}">
+            <label class="journal-theme__toggle"
+                   title="{{ option.toggle.name }}"
+                   aria-label="{{ option.toggle.name }}"
+                   for="__palette_{{ loop.index % loop.length }}"
+                   hidden>
+              {% if scheme == 'slate' %}昼{% else %}夜{% endif %}
+            </label>
+          {% endfor %}
+        </form>
         {% include "partials/javascripts/palette.html" %}
       </div>
     {% endif %}
