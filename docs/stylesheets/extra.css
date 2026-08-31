@@ -723,7 +723,71 @@ body {
   color: var(--null-rust);
 }
 
-/* Blog indexes: keep the Material structure, but make it read like a journal. */
+/* Blog indexes: keep the content quiet when a section only has a few entries. */
+
+.journal-index--life .journal-index__intro {
+  max-width: 36rem;
+  margin-bottom: 3.8rem;
+}
+
+.journal-index--life .journal-index__intro h1 {
+  margin-bottom: 0.85rem;
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 500;
+}
+
+.journal-index--life .journal-index__intro p {
+  margin: 0;
+  color: var(--null-muted);
+  font-family: var(--null-serif);
+  font-size: 0.92rem;
+}
+
+.journal-index--life .journal-index__entries {
+  border-top: 1px solid var(--null-ink);
+}
+
+.journal-index--life .md-post--excerpt {
+  display: grid;
+  grid-template-columns: 8rem minmax(0, 1fr);
+  gap: 1rem 2.4rem;
+  padding: 2.3rem 0 2.5rem;
+}
+
+.journal-index--life .md-post__header {
+  padding-top: 0.25rem;
+}
+
+.journal-index--life .md-post--excerpt .md-post__meta {
+  color: var(--null-muted);
+  font-family: var(--null-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+}
+
+.journal-index--life .md-post--excerpt .md-post__content h2 {
+  margin-top: 0;
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  font-weight: 500;
+}
+
+.journal-index--life .md-post--excerpt .md-post__content > p {
+  color: var(--null-muted);
+  font-size: 0.88rem;
+}
+
+.journal-index--life .md-post--excerpt .md-post__action a {
+  color: var(--null-ink);
+  font-family: var(--null-sans);
+  font-size: 0.6rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.journal-index--life .md-post--excerpt .md-post__action a::after {
+  margin-left: 0.45rem;
+  content: "→";
+}
 
 .md-post--excerpt {
   margin: 0;
@@ -1239,6 +1303,11 @@ body {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     padding: 3.5rem 0 5.5rem;
+  }
+
+  .journal-index--life .md-post--excerpt {
+    grid-template-columns: 1fr;
+    gap: 0.7rem;
   }
 
   .journal-rail {

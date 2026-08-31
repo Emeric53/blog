@@ -1,0 +1,23 @@
+{% extends "main.html" %}
+
+{% set journal_section = page.file.src_uri.split('/')[0] | lower %}
+
+{% block container %}
+  <div class="md-content journal-index journal-index--{{ journal_section }}" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset journal-index__intro">
+        {{ page.content }}
+      </header>
+      <div class="journal-index__entries">
+        {% for post in posts %}
+          {% include "partials/post.html" %}
+        {% endfor %}
+      </div>
+      {% if pagination %}
+        {% block pagination %}
+          {% include "partials/pagination.html" %}
+        {% endblock %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
