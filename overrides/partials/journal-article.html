@@ -1,0 +1,76 @@
+{% macro render_toc(items) %}
+  <ul>
+    {% for item in items %}
+      <li>
+        <a href="{{ item.url }}">{{ item.title }}</a>
+        {% if item.children %}{{ render_toc(item.children) }}{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% set src_uri = page.file.src_uri %}
+{% set section = src_uri.split('/')[0] %}
+{% if section == 'monthly' %}
+  {% set section_name = '月记' %}
+  {% set section_label = 'MONTHLY NOTES' %}
+  {% set section_url = 'monthly/' %}
+{% elif section == 'life' %}
+  {% set section_name = '生活' %}
+  {% set section_label = 'LIFE NOTES' %}
+  {% set section_url = 'life/' %}
+{% elif section == 'technology' %}
+  {% set section_name = '技术' %}
+  {% set section_label = 'TECHNICAL NOTES' %}
+  {% set section_url = 'technology/' %}
+{% elif section == 'Share' %}
+  {% set section_name = '分享' %}
+  {% set section_label = 'SHARED THINGS' %}
+  {% set section_url = 'Share/' %}
+{% else %}
+  {% set section_name = '首页' %}
+  {% set section_label = 'PERSONAL NOTE' %}
+  {% set section_url = '' %}
+{% endif %}
+
+{% set toc = page.toc %}
+{% set first_toc = toc | first %}
+{% if first_toc and first_toc.level == 1 %}
+  {% set toc = first_toc.children %}
+{% endif %}
+
+<div class="md-content journal-page" data-md-component="content">
+  <div class="journal-layout">
+    <aside class="journal-rail" aria-label="文章信息">
+      <p class="journal-rail__label">{{ section_label }}</p>
+      <a class="journal-rail__back" href="{{ section_url | url }}">← 返回{{ section_name }}</a>
+      <div class="journal-rail__details">
+        {% if page.config and page.config.date and page.config.date.created %}
+          <time datetime="{{ page.config.date.created }}">{{ page.config.date.created | date }}</time>
+        {% elif page.meta and page.meta.date %}
+          <time datetime="{{ page.meta.date }}">{{ page.meta.date }}</time>
+        {% endif %}
+        <span>{{ section_name }}</span>
+      </div>
+    </aside>
+
+    <article class="journal-body md-typeset">
+      {% include "partials/tags.html" %}
+      {% if "\u003ch1" not in page.content %}
+        <h1>{{ page.title | d(config.site_name, true) }}</h1>
+      {% endif %}
+      {{ page.content }}
+      <div class="journal-end" aria-label="文章结束">
+        <span></span><i></i><span></span>
+      </div>
+      {% include "partials/comments.html" %}
+    </article>
+
+    {% if toc %}
+      <aside class="journal-toc" aria-label="文章目录">
+        <p>ON THIS PAGE</p>
+        {{ render_toc(toc) }}
+      </aside>
+    {% endif %}
+  </div>
+</div>

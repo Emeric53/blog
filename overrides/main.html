@@ -19,3 +19,37 @@
     <meta name="twitter:image" content="https://emeric53.github.io/blog/assets/images/og.png">
   {% endif %}
 {% endblock %}
+
+{% block header %}
+  {% include "partials/null-masthead.html" %}
+{% endblock %}
+
+{% block site_nav %}
+  {% if page %}
+    {% set src_uri = page.file.src_uri | lower %}
+    {% set is_article = not page.is_homepage and not src_uri.endswith("index.md") and src_uri != "tags.md" %}
+  {% else %}
+    {% set is_article = false %}
+  {% endif %}
+  {% if not is_article %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block container %}
+  {% if page %}
+    {% set src_uri = page.file.src_uri | lower %}
+    {% set is_article = not page.is_homepage and not src_uri.endswith("index.md") and src_uri != "tags.md" %}
+  {% else %}
+    {% set is_article = false %}
+  {% endif %}
+  {% if is_article %}
+    {% include "partials/journal-article.html" %}
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block footer %}
+  {% include "partials/null-site-footer.html" %}
+{% endblock %}

@@ -1,0 +1,23 @@
+<header class="journal-masthead" data-md-component="header">
+  <nav class="journal-masthead__inner" aria-label="网站导航">
+    <a class="journal-brand" href="{{ nav.homepage.url | url }}" aria-label="Nullspace 首页">
+      <span class="journal-brand__orbit" aria-hidden="true"></span>
+      <span>NULLSPACE</span>
+    </a>
+
+    <div class="journal-masthead__links">
+      <a href="{{ 'monthly/' | url }}"{% if page and page.url.startswith('monthly/') %} aria-current="page"{% endif %}>月记</a>
+      <a href="{{ 'life/' | url }}"{% if page and page.url.startswith('life/') %} aria-current="page"{% endif %}>生活</a>
+      <a href="{{ 'technology/' | url }}"{% if page and page.url.startswith('technology/') %} aria-current="page"{% endif %}>技术</a>
+      <a href="{{ 'Share/' | url }}"{% if page and page.url.startswith('Share/') %} aria-current="page"{% endif %}>分享</a>
+      <a href="{{ 'about/' | url }}"{% if page and page.url == 'about/' %} aria-current="page"{% endif %}>关于</a>
+    </div>
+
+    {% if config.theme.palette and not config.theme.palette is mapping %}
+      <div class="journal-palette" aria-label="切换明暗主题">
+        {% include "partials/palette.html" %}
+        {% include "partials/javascripts/palette.html" %}
+      </div>
+    {% endif %}
+  </nav>
+</header>

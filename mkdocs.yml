@@ -18,14 +18,9 @@ theme:
   features:
     - navigation.indexes
     - navigation.sections
-    - navigation.top
     - search.suggest
     - search.highlight
     - content.code.copy
-    - toc.follow
-    - navigation.instant
-    - navigation.instant.prefetch
-    - navigation.instant.progress
   palette:
     - scheme: default
       toggle:

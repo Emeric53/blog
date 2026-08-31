@@ -78,8 +78,8 @@ def on_page_content(html, page, config, files):
 
     banner = (
         '<div class="reading-meta">'
-        f'<span class="reading-meta__item">📝 {total} 字</span>'
-        f'<span class="reading-meta__item">⏱ 约 {minutes} 分钟</span>'
+        f'<span class="reading-meta__item">{total} 字</span>'
+        f'<span class="reading-meta__item">约 {minutes} 分钟</span>'
         "</div>"
     )
 
