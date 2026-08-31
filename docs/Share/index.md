@@ -1,18 +1,8 @@
 ---
 template: channel-index.html
-entries:
-  - label: 阅读
-    title: Reading
-    description: 阅读清单与摘记。
-    pending: true
-  - label: 声音
-    title: Music
-    description: 音乐与值得重听的声音。
-    pending: true
-  - label: 网络
-    title: Network
-    description: 常用网络资源和工具。
-    pending: true
+entries: []
+empty_title: 暂无文章
+empty_description: 分享内容还在整理，正式发布后会按日期显示在这里。
 ---
 
 # 分享

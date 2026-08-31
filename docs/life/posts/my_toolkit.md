@@ -46,52 +46,26 @@ search:
 
 ## 软件篇
 
-
-### My app defaults
-
-📨 邮件客户端：Mailmate, Apple Mail.app
-
-📝 笔记应用：Obsidian + remotely save, Apple Notes.app
-
-✅ 待办事项：Apple Reminders.app (提醒事项)
-
-📷 摄影设备：Project Indigo with iPhone, Google Pixel 9 Pro
-
-📆 日历服务：Apple Calendar, Google Calendar
-
-📁 云端存储：iCloud, Google Drive, OneDrive
-
-📖 RSS 阅读器：Folo
-
-🙍🏻‍♂️ 通讯录：Apple Contacts
-
-🌐 浏览器：Chrome
-
-💬 即时通讯：Telegram, WeChat (微信)
-
-📜 文字处理：Markdown, LaTeX, MS Word
-
-📊 演示文稿：MS PowerPoint, Apple Keynote.app, Figma
-
-🛒 购物清单：Apple Reminders.app
-
-💰 记账理财：Poketto
-
-📰 新闻资讯：Apple News.app, Particle, Twitter
-
-🎵 音乐服务：Apple Music.app, Spotify
-
-🎤 播客应用：Apple Podcasts.app
-
-🔐 密码管理：Apple Passwords.app
-
-🧑‍💻 代码编辑器：Google Antigravity, VS Code, Zed 
-
-✈️ 网络工具：Surge, FlClash
-
-🪄 启动器：Alfred
-
-😘 博客平台：Github Pages
-
-⌨️ 输入方案：小鹤双拼
-
+- 📨 邮件客户端：Mailmate, Apple Mail.app
+- 📝 笔记应用：Obsidian + remotely save, Apple Notes.app
+- ✅ 待办事项：Apple Reminders.app (提醒事项)
+- 📷 摄影设备：Project Indigo with iPhone, Google Pixel 9 Pro
+- 📆 日历服务：Apple Calendar, Google Calendar
+- 📁 云端存储：iCloud, Google Drive, OneDrive
+- 📖 RSS 阅读器：Folo
+- 🙍🏻‍♂️ 通讯录：Apple Contacts
+- 🌐 浏览器：Chrome
+- 💬 即时通讯：Telegram, WeChat (微信)
+- 📜 文字处理：Markdown, LaTeX, MS Word
+- 📊 演示文稿：MS PowerPoint, Apple Keynote.app, Figma
+- 🛒 购物清单：Apple Reminders.app
+- 💰 记账理财：Poketto
+- 📰 新闻资讯：Apple News.app, Particle, Twitter
+- 🎵 音乐服务：Apple Music.app, Spotify
+- 🎤 播客应用：Apple Podcasts.app
+- 🔐 密码管理：Apple Passwords.app
+- 🧑‍💻 代码编辑器：Google Antigravity, VS Code, Zed
+- ✈️ 网络工具：Surge, FlClash
+- 🪄 启动器：Alfred
+- 😘 博客平台：Github Pages
+- ⌨️ 输入方案：小鹤双拼

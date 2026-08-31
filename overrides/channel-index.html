@@ -18,6 +18,14 @@
             entry.description,
             entry.pending
           ) }}
+        {% else %}
+          {{ render_channel_entry(
+            "—",
+            page.meta.empty_title,
+            "",
+            page.meta.empty_description,
+            true
+          ) }}
         {% endfor %}
       </div>
     </div>
