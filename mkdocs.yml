@@ -84,6 +84,7 @@ plugins:
 
 hooks:
   - hooks/reading_time.py
+  - hooks/recent_updates.py
 
 extra_javascript:
   - javascripts/mathjax.js

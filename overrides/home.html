@@ -26,21 +26,13 @@
           <h2 id="recent-title">最近更新</h2>
         </div>
         <div class="null-writing">
-          <a class="null-entry null-entry--lead" href="{{ 'monthly/2026-年的春天我不知道会是这样/' | url }}">
-            <span class="null-entry__meta">月记 · 2026.04.16</span>
-            <strong>2026 年的春天，我不知道会是这样</strong>
-            <span class="null-entry__arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="null-entry" href="{{ 'monthly/2026年1月记录/' | url }}">
-            <span class="null-entry__meta">月记 · 2026.02.03</span>
-            <strong>2026 年 1 月记录</strong>
-            <span class="null-entry__arrow" aria-hidden="true">↗</span>
-          </a>
-          <a class="null-entry" href="{{ 'technology/agentic coding/' | url }}">
-            <span class="null-entry__meta">技术</span>
-            <strong>Agentic coding</strong>
-            <span class="null-entry__arrow" aria-hidden="true">↗</span>
-          </a>
+          {% for entry in config.extra.recent_updates %}
+            <a class="null-entry{% if loop.first %} null-entry--lead{% endif %}" href="{{ entry.url | url }}">
+              <span class="null-entry__meta">{{ entry.label }} · {{ entry.date.strftime('%Y.%m.%d') }}</span>
+              <strong>{{ entry.title }}</strong>
+              <span class="null-entry__arrow" aria-hidden="true">↗</span>
+            </a>
+          {% endfor %}
         </div>
       </section>
 
