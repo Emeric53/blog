@@ -26,7 +26,7 @@ search:
 
 ## 结语
 
-回家前的公交车上，我想了很多，本来想写的也远远不止这些，但是回到家做晚饭吃完饭，搞搞科研以后，现在想想写出来，很多观点就遗忘了。我感觉有些遗憾，但是还觉得好几条非常有价值，但也可能说明自己有时候就是会对有价值的东西忽视，不够在乎，就像我有时候对人一样。不珍惜自然就会失去。我的为人处事还有很多方面需要反思和改变。
+回家前的公交车上，我想了很多，本来想写的也远远不止这些，但是回到家做晚饭吃完饭，搞搞科研以后，现在想想写出来，很多观点就遗忘了。我感觉有些遗憾，当时还觉得好几条非常有价值，但也可能说明自己有时候就是会对有价值的东西忽视，不够在乎，就像我有时候对人一样。不珍惜自然就会失去。我的为人处事还有很多方面需要反思和改变。
 
 
 <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/track/6he8m8DhpU41ojTrSNXNHe?utm_source=generator&si=e8efe195f08f430e" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
