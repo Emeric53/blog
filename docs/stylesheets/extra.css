@@ -1,19 +1,21 @@
 /* Nullspace — a personal field journal, not a generic documentation theme. */
 
 :root {
-  --null-paper: #f1ece2;
-  --null-paper-deep: #e6dfd2;
-  --null-surface: #f8f5ee;
-  --null-ink: #273432;
-  --null-muted: #65706b;
-  --null-faint: #9b9f98;
-  --null-line: rgba(39, 52, 50, 0.16);
-  --null-leaf: #71877a;
-  --null-rust: #a85f46;
-  --null-plum: #745a69;
-  --null-serif: "Iowan Old Style", "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "Times New Roman", serif;
-  --null-display: Baskerville, "Songti SC", "STSong", "Noto Serif CJK SC", "Source Han Serif SC", "Times New Roman", serif;
-  --null-sans: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --null-paper: #f1f3f3;
+  --null-paper-deep: #e6e9e9;
+  --null-surface: #f7f8f8;
+  --null-ink: #242930;
+  --null-muted: #68717a;
+  --null-faint: #9299a0;
+  --null-line: rgba(36, 41, 48, 0.15);
+  --null-leaf: #788f83;
+  --null-rust: #71869d;
+  --null-plum: #837a9d;
+  --null-serif: "Newsreader", "Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", serif;
+  --null-serif-ja: "Newsreader", "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --null-serif-ko: "Newsreader", "Gowun Batang", AppleMyungjo, Batang, serif;
+  --null-display: var(--null-serif);
+  --null-sans: "Avenir Next", Avenir, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Hiragino Sans", "Apple SD Gothic Neo", sans-serif;
   --null-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
 
   --md-text-font: var(--null-sans);
@@ -27,23 +29,23 @@
   --md-default-fg-color--lighter: var(--null-faint);
   --md-default-fg-color--lightest: var(--null-line);
   --md-typeset-color: var(--null-ink);
-  --md-typeset-a-color: #5d7568;
+  --md-typeset-a-color: #657c8f;
   --md-code-bg-color: rgba(39, 52, 50, 0.06);
   --md-footer-bg-color: var(--null-ink);
   --md-footer-bg-color--dark: #1c2524;
 }
 
 [data-md-color-scheme="slate"] {
-  --null-paper: #171c1b;
-  --null-paper-deep: #202725;
-  --null-surface: #1d2422;
-  --null-ink: #e7e2d8;
-  --null-muted: #abb3ac;
-  --null-faint: #777f79;
-  --null-line: rgba(231, 226, 216, 0.15);
-  --null-leaf: #91aa9a;
-  --null-rust: #d08264;
-  --null-plum: #b18da2;
+  --null-paper: #171a20;
+  --null-paper-deep: #20242b;
+  --null-surface: #1d2128;
+  --null-ink: #e7e9ea;
+  --null-muted: #aab0b7;
+  --null-faint: #747c85;
+  --null-line: rgba(231, 233, 234, 0.15);
+  --null-leaf: #91aa9d;
+  --null-rust: #91a8bd;
+  --null-plum: #aaa0c2;
 
   --md-primary-fg-color: var(--null-paper);
   --md-primary-bg-color: var(--null-ink);
@@ -65,6 +67,32 @@ html {
 
 body {
   background: var(--null-paper);
+}
+
+.journal-body:lang(ja),
+.quiet-page__body:lang(ja),
+.journal-index:lang(ja) {
+  --null-serif: var(--null-serif-ja);
+  --null-display: var(--null-serif-ja);
+}
+
+.journal-body [lang^="ja"],
+.quiet-page__body [lang^="ja"],
+.journal-index [lang^="ja"] {
+  font-family: var(--null-serif-ja);
+}
+
+.journal-body:lang(ko),
+.quiet-page__body:lang(ko),
+.journal-index:lang(ko) {
+  --null-serif: var(--null-serif-ko);
+  --null-display: var(--null-serif-ko);
+}
+
+.journal-body [lang^="ko"],
+.quiet-page__body [lang^="ko"],
+.journal-index [lang^="ko"] {
+  font-family: var(--null-serif-ko);
 }
 
 ::selection {
@@ -110,8 +138,8 @@ body {
 
 .md-typeset {
   color: var(--null-ink);
-  font-size: 0.86rem;
-  line-height: 1.95;
+  font-size: 0.9rem;
+  line-height: 1.9;
 }
 
 .md-typeset h1,
@@ -124,7 +152,7 @@ body {
   max-width: 15em;
   margin-bottom: 1.4rem;
   font-family: var(--null-display);
-  font-size: clamp(2rem, 5vw, 3.15rem);
+  font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 600;
   letter-spacing: -0.02em;
   line-height: 1.2;
@@ -258,8 +286,9 @@ body {
   align-items: center;
   justify-self: center;
   font-family: var(--null-serif);
-  font-size: 0.72rem;
-  letter-spacing: 0.025em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0;
 }
 
 .journal-masthead__links a {
@@ -300,7 +329,8 @@ body {
   padding: 0.2rem 0;
   color: var(--null-muted);
   font-family: var(--null-serif);
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  font-weight: 500;
   text-align: right;
   cursor: pointer;
 }
@@ -367,20 +397,22 @@ body {
   border-top: 1px solid var(--null-ink);
 }
 
-.journal-rail__label,
 .journal-toc > p {
   margin: 0;
   color: var(--null-rust);
-  font-size: 0.56rem;
-  letter-spacing: 0.07em;
+  font-family: var(--null-serif);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0;
 }
 
 .journal-rail__back {
   display: inline-block;
-  margin-top: 1.2rem;
+  margin-top: 0;
   color: var(--null-ink) !important;
   font-family: var(--null-serif);
-  font-size: 0.8rem;
+  font-size: 0.76rem;
+  font-weight: 500;
 }
 
 .journal-rail__back:hover {
@@ -390,7 +422,7 @@ body {
 .journal-rail__details {
   display: grid;
   gap: 0.35rem;
-  margin-top: 5rem;
+  margin-top: 4.5rem;
   color: var(--null-faint);
   font-size: 0.55rem;
   letter-spacing: 0.035em;
@@ -400,8 +432,8 @@ body {
   min-width: 0;
   color: var(--null-ink);
   font-family: var(--null-serif);
-  font-size: 0.98rem;
-  line-height: 2.05;
+  font-size: 0.9rem;
+  line-height: 1.9;
 }
 
 .journal-body > h1:first-of-type {
@@ -409,9 +441,9 @@ body {
   margin: 0 0 1.35rem;
   color: var(--null-ink);
   font-family: var(--null-display);
-  font-size: clamp(2.65rem, 5vw, 4.25rem);
+  font-size: clamp(2.3rem, 4vw, 3.25rem);
   font-weight: 500;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.012em;
   line-height: 1.13;
 }
 
@@ -433,8 +465,8 @@ body {
 
 .journal-body .reading-meta + p {
   color: color-mix(in srgb, var(--null-ink) 88%, var(--null-muted));
-  font-size: 1.08rem;
-  line-height: 2;
+  font-size: 0.96rem;
+  line-height: 1.9;
 }
 
 .journal-body p {
@@ -448,9 +480,9 @@ body {
   color: var(--null-ink);
   border: 0;
   font-family: var(--null-display);
-  font-size: clamp(1.65rem, 3vw, 2.2rem);
+  font-size: clamp(1.35rem, 2.2vw, 1.7rem);
   font-weight: 500;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.008em;
   line-height: 1.35;
 }
 
@@ -468,7 +500,7 @@ body {
   margin: 3rem 0 1rem;
   color: var(--null-ink);
   font-family: var(--null-display);
-  font-size: 1.08rem;
+  font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0;
 }
@@ -661,8 +693,8 @@ body {
 .journal-toc a {
   display: block;
   color: var(--null-faint);
-  font-family: var(--null-sans);
-  font-size: 0.62rem;
+  font-family: var(--null-serif);
+  font-size: 0.68rem;
   line-height: 1.55;
 }
 
@@ -700,8 +732,8 @@ body {
   justify-content: space-between;
   padding: 2rem 0 3.25rem;
   font-family: var(--null-serif);
-  font-size: 0.66rem;
-  letter-spacing: 0.02em;
+  font-size: 0.7rem;
+  letter-spacing: 0.005em;
 }
 
 .journal-site-footer__inner p {
@@ -730,7 +762,7 @@ body {
 
 .journal-index .journal-index__intro h1 {
   margin-bottom: 0.85rem;
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-size: clamp(2.2rem, 4vw, 3rem);
   font-weight: 500;
 }
 
@@ -757,9 +789,10 @@ body {
   margin: 0;
   padding-top: 0.3rem;
   color: var(--null-muted);
-  font-family: var(--null-sans);
-  font-size: 0.58rem;
-  letter-spacing: 0.04em;
+  font-family: var(--null-serif);
+  font-size: 0.66rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0;
   line-height: 1.6;
 }
 
@@ -769,7 +802,7 @@ body {
   color: var(--null-ink);
   border: 0;
   font-family: var(--null-display);
-  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
   font-weight: 500;
   line-height: 1.35;
 }
@@ -843,25 +876,25 @@ body {
   margin-inline: auto;
   color: var(--null-ink);
   font-family: var(--null-serif);
-  font-size: 0.98rem;
-  line-height: 2;
+  font-size: 0.9rem;
+  line-height: 1.9;
 }
 
 .quiet-page__body > h1:first-of-type {
   max-width: 12em;
   margin: 0 0 2.25rem;
   font-family: var(--null-display);
-  font-size: clamp(2.7rem, 6vw, 4.15rem);
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 500;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.012em;
   line-height: 1.15;
 }
 
 .quiet-page__body > p:first-of-type {
   max-width: 38rem;
   color: var(--null-muted);
-  font-size: 1.08rem;
-  line-height: 1.95;
+  font-size: 0.95rem;
+  line-height: 1.85;
 }
 
 .quiet-page__body h2 {
@@ -869,7 +902,7 @@ body {
   padding-top: 1rem;
   border-top: 1px solid var(--null-ink);
   font-family: var(--null-display);
-  font-size: clamp(1.45rem, 3vw, 1.9rem);
+  font-size: clamp(1.3rem, 2.2vw, 1.65rem);
   font-weight: 500;
 }
 
@@ -932,19 +965,26 @@ body {
   color: var(--null-rust);
 }
 
-.quiet-page--about .quiet-page__body h2 + ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 1.8rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+.quiet-page--about .quiet-page__body > p:first-of-type {
+  color: var(--null-ink);
+  font-size: 0.92rem;
+  line-height: 1.9;
 }
 
-.quiet-page--about .quiet-page__body h2 + ul a {
-  font-family: var(--null-sans);
-  font-size: 0.72rem;
-  letter-spacing: 0.025em;
+.quiet-page--about .about-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem 2rem;
+  margin: 0;
+}
+
+.quiet-page--about .about-links a {
+  color: var(--null-ink);
+  font-family: var(--null-serif);
+  font-size: 0.82rem;
+  letter-spacing: 0;
+  text-decoration-color: var(--null-line);
+  text-underline-offset: 0.25em;
 }
 
 /* The personal landing page */
@@ -967,183 +1007,100 @@ body {
   color: inherit;
 }
 
-.null-nav,
 .null-main,
-.null-footer {
-  width: min(100% - 3rem, 76rem);
+.journal-masthead__inner,
+.journal-site-footer__inner {
+  width: min(100% - 4rem, 78rem);
   margin-inline: auto;
-}
-
-.null-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 5.4rem;
-  font-family: var(--null-serif);
-  font-size: 0.74rem;
-  letter-spacing: 0.025em;
-  border-bottom: 1px solid var(--null-line);
-}
-
-.null-mark {
-  display: inline-flex;
-  gap: 0.6rem;
-  align-items: center;
-  font-family: var(--null-display);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.015em;
-  text-transform: none;
-}
-
-.null-mark__empty {
-  font-size: 1.65rem;
-}
-
-.null-nav__links {
-  display: flex;
-  gap: clamp(1.2rem, 3vw, 2.8rem);
-}
-
-.null-nav__links a {
-  position: relative;
-}
-
-.null-nav__links a::after {
-  position: absolute;
-  right: 0;
-  bottom: -0.35rem;
-  left: 0;
-  height: 1px;
-  content: "";
-  background: var(--null-rust);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 180ms ease;
-}
-
-.null-nav__links a:hover::after {
-  transform: scaleX(1);
 }
 
 .null-hero {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 2fr) minmax(15rem, 0.8fr);
+  grid-template-columns: minmax(0, 1.35fr) minmax(14rem, 0.65fr);
   gap: clamp(3rem, 9vw, 8rem);
-  align-items: end;
-  min-height: min(46rem, calc(100vh - 5.4rem));
-  padding: clamp(5rem, 12vh, 9rem) 0 clamp(4rem, 9vh, 7rem);
+  min-height: min(36rem, calc(100vh - 4.6rem));
+  padding: clamp(5rem, 12vh, 8rem) 0;
   border-bottom: 1px solid var(--null-line);
-}
-
-.null-hero::before {
-  position: absolute;
-  top: 12%;
-  right: 15%;
-  width: clamp(12rem, 28vw, 22rem);
-  aspect-ratio: 1;
-  pointer-events: none;
-  content: "";
-  border: 1px solid color-mix(in srgb, var(--null-leaf) 52%, transparent);
-  border-radius: 50%;
-  opacity: 0.55;
-}
-
-.null-hero::after {
-  position: absolute;
-  top: 30%;
-  right: 8%;
-  width: clamp(8rem, 20vw, 16rem);
-  aspect-ratio: 2.8 / 1;
-  pointer-events: none;
-  content: "";
-  border: 1px solid color-mix(in srgb, var(--null-rust) 60%, transparent);
-  border-radius: 50%;
-  transform: rotate(-17deg);
-}
-
-.null-hero__copy,
-.null-now {
-  position: relative;
-  z-index: 1;
-}
-
-.null-kicker,
-.null-section__heading > p,
-.null-now__label,
-.null-now__date {
-  margin: 0;
-}
-
-.null-section__heading > p,
-.null-now__label,
-.null-now__date {
-  font-family: var(--null-sans);
-  font-size: 0.6rem;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  align-items: center;
 }
 
 .null-kicker {
-  margin-bottom: 1.8rem;
-  color: var(--null-rust);
-  font-family: var(--null-serif);
-  font-size: 0.76rem;
-  font-style: italic;
-  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.null-kicker {
+  margin-bottom: 2.2rem;
+  color: var(--null-plum);
+  font-family: var(--null-display);
+  font-size: 1.4rem;
 }
 
 .null-hero h1 {
   max-width: 12em;
   margin: 0;
-  font-family: var(--null-serif);
-  font-size: clamp(2.9rem, 5.3vw, 4.7rem);
+  font-family: var(--null-display);
+  font-size: clamp(3.2rem, 7vw, 6.6rem);
   font-weight: 500;
-  letter-spacing: -0.075em;
-  line-height: 1.08;
+  letter-spacing: -0.065em;
+  line-height: 0.94;
 }
 
 .null-intro {
   max-width: 39rem;
-  margin: 2.5rem 0 0;
+  margin: 2rem 0 0;
   color: var(--null-muted);
-  font-family: var(--null-serif);
-  font-size: clamp(1rem, 1.7vw, 1.22rem);
-  line-height: 1.9;
-}
-
-.null-now {
-  padding: 1.4rem 0 0 1.4rem;
-  border-top: 1px solid var(--null-ink);
-  border-left: 1px solid var(--null-line);
-}
-
-.null-now__label {
-  color: var(--null-rust);
-}
-
-.null-now p {
-  margin: 1.1rem 0 2.2rem;
-  font-family: var(--null-serif);
-  font-size: 0.96rem;
-  letter-spacing: 0.008em;
-  line-height: 1.9;
-}
-
-.null-now__date {
-  color: var(--null-faint);
-}
-
-.null-hero__index {
-  position: absolute;
-  top: 1.8rem;
-  right: 0;
-  color: var(--null-faint);
   font-family: var(--null-sans);
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  writing-mode: vertical-rl;
+  font-size: 0.76rem;
+  letter-spacing: 0.08em;
+  line-height: 1.6;
+}
+
+.null-hero__object {
+  position: relative;
+  width: min(100%, 20rem);
+  aspect-ratio: 4 / 5;
+  justify-self: end;
+}
+
+.null-hero__plane {
+  position: absolute;
+  display: block;
+}
+
+.null-hero__plane--blue {
+  top: 3%;
+  right: 2%;
+  width: 67%;
+  height: 73%;
+  background: color-mix(in srgb, var(--null-rust) 36%, var(--null-paper));
+}
+
+.null-hero__plane--green {
+  right: 35%;
+  bottom: 3%;
+  width: 58%;
+  height: 36%;
+  background: color-mix(in srgb, var(--null-leaf) 42%, var(--null-paper));
+}
+
+.null-hero__plane--violet {
+  top: 20%;
+  left: 2%;
+  width: 33%;
+  aspect-ratio: 1;
+  background: color-mix(in srgb, var(--null-plum) 48%, var(--null-paper));
+  border-radius: 50%;
+}
+
+.null-hero__symbol {
+  position: absolute;
+  right: 12%;
+  bottom: 14%;
+  color: var(--null-ink);
+  font-family: var(--null-serif);
+  font-size: clamp(3rem, 7vw, 5rem);
+  line-height: 1;
 }
 
 .null-section {
@@ -1154,14 +1111,10 @@ body {
   border-bottom: 1px solid var(--null-line);
 }
 
-.null-section__heading > p {
-  color: var(--null-rust);
-}
-
 .null-section__heading h2 {
-  margin: 0.8rem 0 0;
+  margin: 0;
   font-family: var(--null-display);
-  font-size: clamp(1.65rem, 3vw, 2.35rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 500;
   letter-spacing: -0.04em;
 }
@@ -1173,7 +1126,7 @@ body {
 .null-entry {
   position: relative;
   display: grid;
-  grid-template-columns: 2.4rem 1fr auto;
+  grid-template-columns: 1fr auto;
   gap: 0.65rem 1.2rem;
   padding: 1.6rem 2.4rem 1.7rem 0;
   border-bottom: 1px solid var(--null-line);
@@ -1182,47 +1135,29 @@ body {
 
 .null-entry:hover {
   padding-left: 1rem;
-  background: color-mix(in srgb, var(--null-leaf) 7%, transparent);
-}
-
-.null-entry__number,
-.null-entry__meta {
-  font-size: 0.58rem;
-}
-
-.null-entry__number {
-  grid-row: 1 / span 3;
-  color: var(--null-rust);
-  font-family: var(--null-sans);
-  letter-spacing: 0.07em;
+  background: color-mix(in srgb, var(--null-rust) 8%, transparent);
 }
 
 .null-entry__meta {
-  color: var(--null-faint);
-  font-family: var(--null-sans);
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  grid-column: 1;
+  color: var(--null-muted);
+  font-family: var(--null-serif);
+  font-size: 0.68rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.005em;
 }
 
 .null-entry strong {
-  grid-column: 2;
+  grid-column: 1;
   font-family: var(--null-display);
-  font-size: clamp(1.25rem, 2.4vw, 1.8rem);
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
   font-weight: 500;
   letter-spacing: -0.025em;
 }
 
-.null-entry__excerpt {
-  grid-column: 2;
-  color: var(--null-muted);
-  font-family: var(--null-serif);
-  font-size: 0.82rem;
-  line-height: 1.7;
-}
-
 .null-entry__arrow {
-  grid-column: 3;
-  grid-row: 1 / span 3;
+  grid-column: 2;
+  grid-row: 1 / span 2;
   align-self: center;
   font-size: 1.1rem;
 }
@@ -1234,90 +1169,45 @@ body {
 .null-streams {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
   border-top: 1px solid var(--null-ink);
-  border-left: 1px solid var(--null-line);
+  background: var(--null-line);
 }
 
 .null-streams a {
-  min-height: 13rem;
-  padding: 1.4rem;
-  border-right: 1px solid var(--null-line);
-  border-bottom: 1px solid var(--null-line);
-  transition: color 180ms ease, background-color 180ms ease;
+  display: flex;
+  min-height: 9rem;
+  padding: 1.2rem;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--null-paper);
+  transition: transform 180ms ease, background-color 180ms ease;
 }
 
 .null-streams a:hover {
-  color: var(--null-surface);
-  background: var(--null-ink);
+  background: color-mix(in srgb, var(--null-rust) 14%, var(--null-paper));
+  transform: translateY(-0.25rem);
+}
+
+.null-streams a:nth-child(2) {
+  background: color-mix(in srgb, var(--null-leaf) 10%, var(--null-paper));
+}
+
+.null-streams a:nth-child(3) {
+  background: color-mix(in srgb, var(--null-plum) 10%, var(--null-paper));
 }
 
 .null-streams span {
-  display: block;
-  margin-bottom: 2.8rem;
-  color: var(--null-rust);
-  font-family: var(--null-sans);
-  font-size: 0.58rem;
+  color: var(--null-muted);
+  font-family: var(--null-serif);
+  font-size: 1.1rem;
 }
 
 .null-streams strong {
   display: block;
   font-family: var(--null-display);
-  font-size: 1.55rem;
+  font-size: 1.35rem;
   font-weight: 500;
-}
-
-.null-streams p {
-  max-width: 18rem;
-  margin: 0.65rem 0 0;
-  color: var(--null-muted);
-  font-family: var(--null-serif);
-  font-size: 0.8rem;
-  line-height: 1.7;
-}
-
-.null-streams a:hover p {
-  color: color-mix(in srgb, var(--null-surface) 75%, transparent);
-}
-
-.null-quote {
-  padding: clamp(6rem, 14vw, 12rem) 0;
-  text-align: center;
-}
-
-.null-quote p {
-  margin: 0;
-  color: var(--null-plum);
-  font-family: var(--null-display);
-  font-size: clamp(2.3rem, 6vw, 5.5rem);
-  font-style: italic;
-  letter-spacing: -0.05em;
-}
-
-.null-quote span {
-  display: block;
-  margin-top: 1.4rem;
-  color: var(--null-muted);
-  font-family: var(--null-serif);
-  font-size: 0.9rem;
-}
-
-.null-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 2rem 0 3.5rem;
-  font-family: var(--null-serif);
-  font-size: 0.66rem;
-  letter-spacing: 0.02em;
-  border-top: 1px solid var(--null-line);
-}
-
-.null-footer p {
-  margin: 0;
-}
-
-.null-footer div {
-  display: flex;
-  gap: 1.5rem;
 }
 
 #__comments {
@@ -1340,6 +1230,7 @@ body {
   .journal-site-footer__inner,
   .journal-layout,
   .quiet-page,
+  .null-main,
   .md-main__inner:not(:has(.journal-page)):not(:has(.null-home)) > .md-content {
     width: min(100% - 3rem, 78rem);
   }
@@ -1353,23 +1244,13 @@ body {
     display: none;
   }
 
-  .null-hero {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-  }
-
-  .null-hero::before,
-  .null-hero::after {
-    right: -5%;
-  }
-
-  .null-now {
-    max-width: 25rem;
-  }
-
   .null-section {
     grid-template-columns: 1fr;
     gap: 2.5rem;
+  }
+
+  .null-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.45fr);
   }
 }
 
@@ -1378,6 +1259,7 @@ body {
   .journal-site-footer__inner,
   .journal-layout,
   .quiet-page,
+  .null-main,
   .md-main__inner:not(:has(.journal-page)):not(:has(.null-home)) > .md-content {
     width: min(100% - 2rem, 78rem);
   }
@@ -1475,27 +1357,9 @@ body {
     font-size: clamp(2.35rem, 11vw, 3.2rem);
   }
 
-  .null-nav,
-  .null-main,
-  .null-footer {
-    width: min(100% - 2rem, 76rem);
-  }
-
-  .null-nav {
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    min-height: 4.5rem;
-    padding: 0.9rem 0;
-  }
-
-  .null-nav__links {
-    width: 100%;
-    justify-content: space-between;
-    gap: 0.65rem;
-    font-size: 0.66rem;
-  }
-
   .null-hero {
+    grid-template-columns: 1fr;
+    gap: 3rem;
     min-height: auto;
     padding: 4rem 0 4rem;
   }
@@ -1504,35 +1368,20 @@ body {
     font-size: clamp(2.2rem, 9vw, 3rem);
   }
 
-  .null-hero__index {
-    display: none;
+  .null-hero__object {
+    width: min(72vw, 16rem);
+    justify-self: end;
   }
 
   .null-entry {
-    grid-template-columns: 1.8rem 1fr auto;
+    grid-template-columns: 1fr auto;
     padding-right: 0.25rem;
-  }
-
-  .null-entry__excerpt {
-    display: none;
   }
 
   .null-streams {
     grid-template-columns: 1fr;
   }
 
-  .null-streams a {
-    min-height: 10rem;
-  }
-
-  .null-streams span {
-    margin-bottom: 1.8rem;
-  }
-
-  .null-footer {
-    flex-direction: column;
-    gap: 1rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

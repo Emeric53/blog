@@ -42,19 +42,17 @@
 <div class="md-content journal-page" data-md-component="content">
   <div class="journal-layout">
     <aside class="journal-rail" aria-label="文章信息">
-      <p class="journal-rail__label">{{ section_label }}</p>
-      <a class="journal-rail__back" href="{{ section_url | url }}">← 返回{{ section_name }}</a>
+      <a class="journal-rail__back" href="{{ section_url | url }}">返回{{ section_name }}</a>
       <div class="journal-rail__details">
         {% if page.config and page.config.date and page.config.date.created %}
           <time datetime="{{ page.config.date.created }}">{{ page.config.date.created | date }}</time>
         {% elif page.meta and page.meta.date %}
           <time datetime="{{ page.meta.date }}">{{ page.meta.date }}</time>
         {% endif %}
-        <span>{{ section_name }}</span>
       </div>
     </aside>
 
-    <article class="journal-body md-typeset">
+    <article class="journal-body md-typeset" lang="{{ page.meta.lang | d(config.theme.language, true) }}">
       {% include "partials/tags.html" %}
       {% if "\u003ch1" not in page.content %}
         <h1>{{ page.title | d(config.site_name, true) }}</h1>
@@ -68,7 +66,7 @@
 
     {% if toc %}
       <aside class="journal-toc" aria-label="文章目录">
-        <p>ON THIS PAGE</p>
+        <p>目录</p>
         {{ render_toc(toc) }}
       </aside>
     {% endif %}
