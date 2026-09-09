@@ -61,8 +61,8 @@
 }
 
 html {
+  overflow-y: scroll;
   scroll-behavior: smooth;
-  scrollbar-gutter: stable;
   text-autospace: normal;
 }
 
