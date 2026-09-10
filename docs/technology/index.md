@@ -1,6 +1,10 @@
 ---
 template: channel-index.html
 entries:
+  - label: 2026年9月10日
+    title: otty + herdr：我的终端工作流更新
+    url: technology/herdr/
+    description: 从 tmux 到 herdr，结合 otty 整理多任务与远程终端工作流。
   - label: 2026年2月5日
     title: Math
     url: technology/Math/

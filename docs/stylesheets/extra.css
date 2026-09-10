@@ -1393,3 +1393,34 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Terminal walkthrough screenshots: preserve proportions and readable menu sizes. */
+.md-typeset .terminal-figure {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: 2rem auto;
+}
+.md-typeset .terminal-figure--compact { width: 320px; }
+.md-typeset .terminal-figure--medium { width: 640px; }
+.md-typeset .terminal-figure p { margin: 0; }
+.md-typeset .terminal-figure a.glightbox { display: block; }
+.md-typeset .terminal-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  margin: 0;
+  border: 1px solid var(--null-line);
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+.md-typeset .terminal-figure figcaption {
+  max-width: 100%;
+  margin: .65rem 0 0;
+  color: var(--null-faint);
+  font-size: .7rem;
+  font-style: normal;
+  line-height: 1.6;
+  text-align: center;
+}
