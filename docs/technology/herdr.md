@@ -68,12 +68,21 @@ workspace 我认为是 终端复用的第一个层级，通过创建不同的 wo
 <figcaption>图 4 · 右键管理 tab：新建、重命名或关闭</figcaption>
 </figure>
 
-而 herdr 更新的地方则在于对 agent 的集成，左侧下方的 pane 就是当前 herdr 会话中存在的不同的 agent 的统一管理视图了，不管是在哪一个 workspace，在哪一个 tab 中，只要是一个安装过配置的 agent，都能直接显示和切换过去。
+tab 里面还可以继续划分 pane，也就是分屏窗格。在 pane 内右键，就能选择向右分屏（Split right）或向下分屏（Split down），也可以重命名、放大或关闭当前 pane。这样，同一个 tab 里就能并排查看多个终端，常用操作用鼠标就能完成，不需要额外记一套快捷键。
+
+<figure class="terminal-figure" markdown="1">
+
+![herdr 上下分屏后的两个 pane，上方窗格的右键菜单包含 Split right、Split down 和 Zoom 等操作](../assets/images/otty-herdr/herdr-pane-split.png){ width="2162" height="1354" loading="lazy" decoding="async" }
+
+<figcaption>图 5 · 在 pane 内右键分屏；图中展示上下两个窗格</figcaption>
+</figure>
+
+而 herdr 更新的地方则在于对 agent 的集成，左侧下方的 agents 列表就是当前 herdr 会话中不同 agent 的统一管理视图，不管是在哪一个 workspace，在哪一个 tab 中，只要是一个安装过配置的 agent，都能直接显示和切换过去。
 <figure class="terminal-figure" markdown="1">
 
 ![herdr 的 agents 列表汇总 ws1 和 test 工作区中的 agy、Codex 和 Claude Code](../assets/images/otty-herdr/herdr-agents.png){ width="2198" height="1148" loading="lazy" decoding="async" }
 
-<figcaption>图 5 · 在 agents 列表中跨 workspace 和 tab 切换</figcaption>
+<figcaption>图 6 · 在 agents 列表中跨 workspace 和 tab 切换</figcaption>
 </figure>
 
 如同所示，我现在分别有 ws1 和 test 两个 workspace，在 ws1 中的两个不同 tab 中，分别开启了 agy 和 codex 两个 agent，而在 test 中我也有一个 tab 打开了一个 claude code，我只需要快速点击就能切换到对应的 agent。
