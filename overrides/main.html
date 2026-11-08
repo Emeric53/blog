@@ -4,7 +4,7 @@
   {{ super() }}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&amp;family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;family=Noto+Serif+SC:wght@400;500;600&amp;family=Zen+Old+Mincho:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
   {% if page and page.file and page.file.src_uri.split('/')[0] in ['monthly', 'life'] %}
     <meta name="robots" content="noindex">
   {% endif %}
@@ -23,6 +23,14 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://emeric53.github.io/blog/assets/images/og.png">
+  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% if page and (page.is_homepage or (page.content and "arithmatex" in page.content)) %}
+    <script src="{{ 'javascripts/mathjax.js' | url }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
   {% endif %}
 {% endblock %}
 

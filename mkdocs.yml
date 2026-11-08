@@ -18,8 +18,6 @@ theme:
   features:
     - navigation.indexes
     - navigation.sections
-    - search.suggest
-    - search.highlight
     - content.code.copy
   palette:
     - scheme: default
@@ -45,10 +43,6 @@ extra:
     category_id: ""
 
 plugins:
-  - search:
-      lang:
-        - en
-        - zh
   - awesome-pages
   - blog:
       blog_dir: monthly
@@ -66,12 +60,6 @@ plugins:
       pagination_per_page: 200
   - tags
   - glightbox
-  - git-revision-date-localized:
-      type: timeago
-      locale: zh
-      enable_creation_date: true
-      enable_git_follow: false
-      fallback_to_build_date: true
   - minify:
       minify_html: true
 
@@ -80,8 +68,6 @@ hooks:
   - hooks/recent_updates.py
 
 extra_javascript:
-  - javascripts/mathjax.js
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
   - https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js
   - javascripts/pangu_init.js
 

@@ -12,8 +12,6 @@
   --null-rust: #71869d;
   --null-plum: #837a9d;
   --null-serif: "Newsreader", "Noto Serif SC", "Songti SC", "STSong", "Source Han Serif SC", serif;
-  --null-serif-ja: "Newsreader", "Zen Old Mincho", "Hiragino Mincho ProN", "Yu Mincho", serif;
-  --null-serif-ko: "Newsreader", "Gowun Batang", AppleMyungjo, Batang, serif;
   --null-display: var(--null-serif);
   --null-sans: "Avenir Next", Avenir, "Helvetica Neue", "PingFang SC", "Hiragino Sans GB", "Hiragino Sans", "Apple SD Gothic Neo", sans-serif;
   --null-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
