@@ -72,13 +72,6 @@ plugins:
       enable_creation_date: true
       enable_git_follow: false
       fallback_to_build_date: true
-  - rss:
-      match_path: (monthly|life)/.*|technology/[^/]+\.md
-      date_from_meta:
-        as_creation: date
-      categories:
-        - categories
-        - tags
   - minify:
       minify_html: true
 

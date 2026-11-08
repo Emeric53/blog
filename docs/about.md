@@ -13,5 +13,4 @@ comments: false
 <p class="about-links">
   <a href="https://github.com/Emeric53">GitHub</a>
   <a href="mailto:todayislml@gmail.com">Email</a>
-  <a href="https://emeric53.github.io/blog/feed_rss_created.xml">RSS</a>
 </p>
