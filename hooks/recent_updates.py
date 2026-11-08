@@ -3,6 +3,7 @@
 from datetime import date, datetime
 from pathlib import Path
 import re
+from urllib.parse import unquote
 
 import yaml
 from pymdownx.slugs import slugify
@@ -104,10 +105,37 @@ def _index_updates(docs_dir: Path):
     return updates
 
 
+_CN = "〇一二三四五六七八九"
+
+
+def _cn_num(n):
+    if n < 10:
+        return _CN[n]
+    tens, ones = divmod(n, 10)
+    return ("" if tens == 1 else _CN[tens]) + "十" + (_CN[ones] if ones else "")
+
+
+def _cn_date(d):
+    return "".join(_CN[int(c)] for c in str(d.year)) + f"年{_cn_num(d.month)}月{_cn_num(d.day)}日"
+
+
+def on_page_context(context, page, config, nav):
+    items = config.extra.get("_updates", [])
+    url = unquote(page.url)
+    for i, item in enumerate(items):
+        if unquote(item["url"]) == url:
+            page.meta["_date_zh"] = _cn_date(item["date"])
+            page.meta["_newer"] = items[i - 1] if i > 0 else None
+            page.meta["_older"] = items[i + 1] if i + 1 < len(items) else None
+            break
+    return context
+
+
 def on_config(config):
     updates = _blog_updates(Path(config.docs_dir)) + _index_updates(Path(config.docs_dir))
     updates.sort(key=lambda item: item["date"], reverse=True)
     config.extra["recent_updates"] = updates[:3]
+    config.extra["_updates"] = updates
     years = {}
     for item in updates:
         years.setdefault(item["date"].year, {}).setdefault(item["date"].month, []).append(item)

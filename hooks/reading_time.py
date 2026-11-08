@@ -74,7 +74,7 @@ def on_page_content(html, page, config, files):
 
     total = page.meta.get("_word_count")
     minutes = page.meta.get("_read_minutes")
-    if not total:
+    if not total or total < 400:
         return html
 
     banner = (

@@ -9,64 +9,51 @@
   </ul>
 {% endmacro %}
 
-{% set src_uri = page.file.src_uri %}
-{% set section = src_uri.split('/')[0] %}
-{% if section == 'monthly' %}
-  {% set section_name = '月记' %}
-  {% set section_label = 'MONTHLY NOTES' %}
-  {% set section_url = 'monthly/' %}
-{% elif section == 'life' %}
-  {% set section_name = '生活' %}
-  {% set section_label = 'LIFE NOTES' %}
-  {% set section_url = 'life/' %}
-{% elif section == 'technology' %}
-  {% set section_name = '技术' %}
-  {% set section_label = 'TECHNICAL NOTES' %}
-  {% set section_url = 'technology/' %}
-{% elif section == 'Share' %}
-  {% set section_name = '分享' %}
-  {% set section_label = 'SHARED THINGS' %}
-  {% set section_url = 'Share/' %}
-{% else %}
-  {% set section_name = '首页' %}
-  {% set section_label = 'PERSONAL NOTE' %}
-  {% set section_url = '' %}
-{% endif %}
+{% set section = page.file.src_uri.split('/')[0] %}
+{% set names = {"monthly": "月记", "life": "生活", "technology": "技术", "Share": "分享"} %}
+{% set section_name = names[section] | d("首页", true) %}
+{% set section_url = (section ~ "/") if section in names else "" %}
 
 {% set toc = page.toc %}
 {% set first_toc = toc | first %}
 {% if first_toc and first_toc.level == 1 %}
   {% set toc = first_toc.children %}
 {% endif %}
+{% set words = page.meta._word_count | d(0, true) %}
+{% set is_note = section != "technology" and words < 400 %}
+{% set show_toc = toc and (toc | length) >= 3 and words >= 800 %}
 
-<div class="md-content journal-page" data-md-component="content">
-  <div class="journal-layout">
-    <aside class="journal-rail" aria-label="文章信息">
-      <a class="journal-rail__back" href="{{ section_url | url }}">返回{{ section_name }}</a>
-      <div class="journal-rail__details">
-        {% if page.config and page.config.date and page.config.date.created %}
-          <time datetime="{{ page.config.date.created }}">{{ page.config.date.created | date }}</time>
-        {% elif page.meta and page.meta.date %}
-          <time datetime="{{ page.meta.date }}">{{ page.meta.date }}</time>
-        {% endif %}
-      </div>
-    </aside>
+<div class="md-content journal-page article{% if is_note %} article--note{% endif %}" data-md-component="content">
+  <div class="article-layout{% if show_toc %} has-toc{% endif %}">
+    <div class="article-date">
+      {% if page.meta._date_zh %}<time>{{ page.meta._date_zh }}</time>{% endif %}
+    </div>
 
     <article class="journal-body md-typeset" lang="{{ page.meta.lang | d(config.theme.language, true) }}">
+      <a class="article-back" href="{{ section_url | url }}">{{ section_name }}</a>
       {% include "partials/tags.html" %}
-      {% if "\u003ch1" not in page.content %}
+      {% if show_toc %}
+        <details class="article-toc-inline">
+          <summary>目录</summary>
+          {{ render_toc(toc) }}
+        </details>
+      {% endif %}
+      {% if "<h1" not in page.content %}
         <h1>{{ page.title | d(config.site_name, true) }}</h1>
       {% endif %}
       {{ page.content }}
-      <div class="journal-end" aria-label="文章结束">
-        <span></span><i></i><span></span>
-      </div>
+
+      {% if page.meta._newer or page.meta._older %}
+        <nav class="article-pager" aria-label="相邻文章">
+          {% if page.meta._newer %}<a href="{{ page.meta._newer.url | url }}"><span>后一篇</span>{{ page.meta._newer.title }}</a>{% else %}<i></i>{% endif %}
+          {% if page.meta._older %}<a href="{{ page.meta._older.url | url }}"><span>前一篇</span>{{ page.meta._older.title }}</a>{% endif %}
+        </nav>
+      {% endif %}
       {% include "partials/comments.html" %}
     </article>
 
-    {% if toc %}
-      <aside class="journal-toc" aria-label="文章目录">
-        <p>目录</p>
+    {% if show_toc %}
+      <aside class="article-toc" aria-label="文章目录">
         {{ render_toc(toc) }}
       </aside>
     {% endif %}

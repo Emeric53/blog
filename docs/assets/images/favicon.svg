@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="18" fill="#f1ece2"/>
-  <circle cx="32" cy="32" r="18" fill="none" stroke="#273432" stroke-width="3"/>
-  <circle cx="32" cy="32" r="7" fill="#a85f46"/>
-  <path d="M9 37c12-7 33-7 46 0" fill="none" stroke="#71877a" stroke-width="3" stroke-linecap="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><style>path{fill:#1c2a5e}@media (prefers-color-scheme:dark){path{fill:#f1f3fc}}</style><path fill-rule="evenodd" d="M32 4a28 28 0 1 0 .001 0zM40.2 9.4A24 13 110 1 0 23.8 54.6A24 13 110 1 0 40.2 9.4z"/></svg>
