@@ -1,33 +1,10 @@
 {% extends "main.html" %}
-{% from "partials/channel-entry.html" import render_channel_entry %}
 
-{% set journal_section = page.file.src_uri.split('/')[0] | lower %}
+{% block extrahead %}
+  {{ super() }}
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" rel="stylesheet">
+{% endblock %}
 
 {% block container %}
-  <div class="md-content journal-index journal-index--{{ journal_section }}" data-md-component="content" lang="{{ page.meta.lang | d(config.theme.language, true) }}">
-    <div class="md-content__inner">
-      <header class="md-typeset journal-index__intro">
-        {{ page.content }}
-      </header>
-      <div class="journal-index__entries">
-        {% for entry in page.meta.entries %}
-          {{ render_channel_entry(
-            entry.label,
-            entry.title,
-            entry.url | url,
-            entry.description,
-            entry.pending
-          ) }}
-        {% else %}
-          {{ render_channel_entry(
-            "—",
-            page.meta.empty_title,
-            "",
-            page.meta.empty_description,
-            true
-          ) }}
-        {% endfor %}
-      </div>
-    </div>
-  </div>
+  {% include "partials/journal-list.html" %}
 {% endblock %}

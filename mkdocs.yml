@@ -56,14 +56,14 @@ plugins:
       post_readtime: false
       authors: false
       categories: false
-      pagination_per_page: 12
+      pagination_per_page: 200
   - blog:
       blog_dir: life
       post_url_format: "{slug}"
       post_readtime: false
       authors: false
       categories: false
-      pagination_per_page: 12
+      pagination_per_page: 200
   - tags
   - glightbox
   - git-revision-date-localized:
@@ -105,6 +105,9 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.arithmatex:
       generic: true
+
+exclude_docs: |
+  technology/Math/
 
 nav:
   - 首页: index.md

@@ -136,6 +136,10 @@ def on_config(config):
     updates.sort(key=lambda item: item["date"], reverse=True)
     config.extra["recent_updates"] = updates[:3]
     config.extra["_updates"] = updates
+    for item in updates:
+        item["year"] = item["date"].year
+        item["year_zh"] = "".join(_CN[int(c)] for c in str(item["year"]))
+        item["day_zh"] = f"{_cn_num(item['date'].month)}月{_cn_num(item['date'].day)}日"
     years = {}
     for item in updates:
         years.setdefault(item["date"].year, {}).setdefault(item["date"].month, []).append(item)

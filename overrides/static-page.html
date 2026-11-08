@@ -2,6 +2,11 @@
 
 {% set static_section = page.file.src_uri.split('/')[0] | lower %}
 
+{% block extrahead %}
+  {{ super() }}
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block container %}
   <div class="md-content quiet-page quiet-page--{{ static_section | replace('.md', '') }}" data-md-component="content">
     <article class="quiet-page__body md-typeset" lang="{{ page.meta.lang | d(config.theme.language, true) }}">

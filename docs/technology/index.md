@@ -5,10 +5,6 @@ entries:
     title: otty + herdr：我的终端工作流更新
     url: technology/herdr/
     description: 从 tmux 到 herdr，结合 otty 整理多任务与远程终端工作流。
-  - label: 2026年2月5日
-    title: Math
-    url: technology/Math/
-    description: 线性代数、向量微积分与群论的学习记录。
   - label: 2026年2月3日
     title: ssh 和 tmux 捣鼓
     url: technology/ssh%20and%20tmux/

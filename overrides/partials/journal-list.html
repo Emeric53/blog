@@ -1,0 +1,30 @@
+{% set section = page.file.src_uri.split('/')[0] %}
+{% set items = config.extra._updates | selectattr("section", "equalto", section) | list %}
+{% if "/archive/" in page.file.src_uri %}
+  {% set items = items | selectattr("year", "equalto", page.title | int) | list %}
+{% endif %}
+
+<div class="md-content list-page" data-md-component="content" lang="{{ page.meta.lang | d(config.theme.language, true) }}">
+  <header class="list-head md-typeset">
+    {{ page.content }}
+  </header>
+
+  {% for group in items | groupby("year") | sort(attribute="grouper", reverse=true) %}
+    <section class="list-year" aria-label="{{ group.grouper }} 年">
+      <h2>{{ group.list[0].year_zh }}</h2>
+      <div class="list-entries">
+        {% for entry in group.list %}
+          <a class="list-entry" href="{{ entry.url | url }}">
+            <time>{{ entry.day_zh }}</time>
+            <div>
+              <h3>{{ entry.title }}</h3>
+              {% if entry.excerpt %}<p>{{ entry.excerpt }}</p>{% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </section>
+  {% else %}
+    <p class="list-empty">{{ page.meta.empty_description | d("这里还没有内容。", true) }}</p>
+  {% endfor %}
+</div>
