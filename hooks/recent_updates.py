@@ -27,6 +27,25 @@ def _front_matter(path: Path):
     return meta or {}, text
 
 
+def _excerpt(text):
+    body = _FRONT_MATTER.sub("", text, count=1)
+    for line in body.splitlines():
+        line = line.strip()
+        if not line or line[0] in "#!<>-|`[":
+            continue
+        line = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", line).replace("**", "").replace("*", "")
+        return line[:72] + ("…" if len(line) > 72 else "")
+    return ""
+
+
+def _minutes(text):
+    body = _FRONT_MATTER.sub("", text, count=1)
+    body = re.sub(r"```.*?```|`[^`]*`|<[^>]+>", " ", body, flags=re.S)
+    cjk = len(re.findall(r"[一-鿿㐀-䶿]", body))
+    words = len(re.findall(r"[A-Za-z0-9]+", body))
+    return max(1, round(cjk / 350 + words / 220))
+
+
 def _as_date(value):
     if isinstance(value, datetime):
         return value.date()
@@ -54,7 +73,10 @@ def _blog_updates(docs_dir: Path):
                 "date": published,
                 "label": label,
                 "title": title,
-                "url": f"{section}/{make_slug(title, '-')}/",
+                "url": f"{section}/{meta.get('slug') or make_slug(title, '-')}/",
+                "section": section,
+                "excerpt": _excerpt(text),
+                "minutes": _minutes(text),
             })
     return updates
 
@@ -75,6 +97,9 @@ def _index_updates(docs_dir: Path):
                 "label": label,
                 "title": entry["title"],
                 "url": entry["url"],
+                "section": section,
+                "excerpt": entry.get("description", ""),
+                "minutes": None,
             })
     return updates
 
@@ -83,4 +108,17 @@ def on_config(config):
     updates = _blog_updates(Path(config.docs_dir)) + _index_updates(Path(config.docs_dir))
     updates.sort(key=lambda item: item["date"], reverse=True)
     config.extra["recent_updates"] = updates[:3]
+    years = {}
+    for item in updates:
+        years.setdefault(item["date"].year, {}).setdefault(item["date"].month, []).append(item)
+    config.extra["almanac"] = [
+        {
+            "year": year,
+            "months": [
+                {"month": m, "entries": sorted(years[year].get(m, []), key=lambda i: i["date"])}
+                for m in range(1, 13)
+            ],
+        }
+        for year in sorted(years, reverse=True)
+    ]
     return config

@@ -1,45 +1,73 @@
 {% extends "main.html" %}
 
+{% block extrahead %}
+  {{ super() }}
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block header %}{% endblock %}
 {% block tabs %}{% endblock %}
 {% block site_nav %}{% endblock %}
 
 {% block container %}
-  <div class="null-home">
+  <div class="almanac-home">
     {% include "partials/null-masthead.html" %}
+    <main class="almanac">
+      <header class="almanac__head">
+        <h1>零空间</h1>
+        <div class="almanac__say">
+          <p><span class="arithmatex">\(\text{Null}(A) = \{x \mid Ax = 0\}\)</span> —— 线性代数中，经变换后归于原点的向量集合。</p>
+          <p class="almanac__motto">这里是我的独立维度。挣脱面向他人的映射，让所有表达回归最初的原点。</p>
+        </div>
+      </header>
 
-    <main class="null-main">
-      <section class="null-hero" aria-labelledby="null-title">
-        <div class="null-hero__copy">
-          <h1 id="null-title">Menglei Liang</h1>
-        </div>
-        <div class="null-hero__object" aria-hidden="true">
-          <span class="null-hero__plane null-hero__plane--blue"></span>
-          <span class="null-hero__plane null-hero__plane--green"></span>
-          <span class="null-hero__plane null-hero__plane--violet"></span>
-          <span class="null-hero__symbol">⌁</span>
-        </div>
-      </section>
+      {% set labels = {"monthly": "月记", "life": "生活", "technology": "技术", "Share": "分享"} %}
+      {% set digits = "〇一二三四五六七八九" %}
+      {% set months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] %}
+      {% for year in config.extra.almanac %}
+        <section class="almanac__year" aria-label="{{ year.year }} 年">
+          <h2>{% for d in year.year | string %}{{ digits[d | int] }}{% endfor %}</h2>
+          <div class="almanac__months">
+            {% for month in year.months %}
+              <div class="almanac__month{% if month.entries %} has-entries{% endif %}" data-ym="{{ year.year }}-{{ month.month }}">
+                <span class="almanac__num">{{ months[month.month - 1] }}</span>
+                <div class="almanac__entries">
+                  {% for entry in month.entries %}
+                    <a class="almanac__entry" href="{{ entry.url | url }}"
+                       data-meta="{{ labels[entry.section] }} · {{ entry.date.strftime('%Y.%m.%d') }}{% if entry.minutes %} · {{ entry.minutes }} 分钟{% endif %}"
+                       data-excerpt="{{ entry.excerpt | e }}">
+                      <span class="almanac__title">{{ entry.title }}</span>
+                      <span class="almanac__day">{{ labels[entry.section] }} · {{ entry.date.day }} 日</span>
+                    </a>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </section>
+      {% endfor %}
 
-      <section class="null-section null-section--writing" aria-labelledby="recent-title">
-        <div class="null-section__heading">
-          <h2 id="recent-title">最近更新</h2>
-        </div>
-        <div class="null-writing">
-          {% for entry in config.extra.recent_updates %}
-            <a class="null-entry{% if loop.first %} null-entry--lead{% endif %}" href="{{ entry.url | url }}">
-              <span class="null-entry__meta">{{ entry.label }} · {{ entry.date.strftime('%Y.%m.%d') }}</span>
-              <strong>{{ entry.title }}</strong>
-              <span class="null-entry__arrow" aria-hidden="true">↗</span>
-            </a>
-          {% endfor %}
-        </div>
-      </section>
-
+      <p class="almanac__readout" aria-hidden="true"><b></b><span></span></p>
     </main>
-
     {% include "partials/null-site-footer.html" %}
   </div>
+  <script>
+    (function () {
+      var root = document.querySelector(".almanac");
+      var meta = root.querySelector(".almanac__readout b");
+      var text = root.querySelector(".almanac__readout span");
+      var entries = root.querySelectorAll(".almanac__entry");
+      function show(entry) { meta.textContent = entry.dataset.meta; text.textContent = entry.dataset.excerpt; }
+      var bar = root.querySelector(".almanac__readout");
+      entries.forEach(function (e) {
+        ["mouseenter", "focus"].forEach(function (n) { e.addEventListener(n, function () { show(e); bar.classList.add("is-on"); }); });
+        ["mouseleave", "blur"].forEach(function (n) { e.addEventListener(n, function () { bar.classList.remove("is-on"); }); });
+      });
+      var now = new Date();
+      var cell = root.querySelector('[data-ym="' + now.getFullYear() + "-" + (now.getMonth() + 1) + '"]');
+      if (cell) cell.classList.add("is-now");
+    })();
+  </script>
 {% endblock %}
 
 {% block footer %}{% endblock %}

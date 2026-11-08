@@ -1,0 +1,71 @@
+/* One pen: every colour on the site is a strength of blue-black ink. */
+:root {
+  --null-paper: #fcfcfa; --null-paper-deep: #f1f2f5; --null-surface: #f6f7f9;
+  --null-ink: #1c2a5e; --null-muted: #4f5a86; --null-faint: #667099;
+  --null-line: rgba(28, 42, 94, .15);
+  --null-leaf: #2f4288; --null-rust: #2f4288; --null-plum: #2f4288;
+  --md-typeset-a-color: #2f4288;
+}
+[data-md-color-scheme="slate"] {
+  --null-paper: #11162a; --null-paper-deep: #1a2038; --null-surface: #181e34;
+  --null-ink: #e3e7f7; --null-muted: #aeb6d6; --null-faint: #929bbf;
+  --null-line: rgba(227, 231, 247, .16);
+  --null-leaf: #a9b9f2; --null-rust: #a9b9f2; --null-plum: #a9b9f2;
+  --md-typeset-a-color: #a9b9f2;
+}
+.almanac-home { color: var(--null-ink); background: var(--null-paper); min-height: 100vh; }
+.almanac { width: min(100% - 4rem, 1180px); margin-inline: auto; padding: 64px 0 64px; font-family: var(--null-serif); }
+.almanac a { color: inherit; }
+.almanac__head, .almanac__year { display: grid; grid-template-columns: 96px minmax(0, 1fr); column-gap: 48px; }
+.almanac__head { align-items: end; margin-bottom: 72px; }
+.almanac__head h1, .almanac__year h2 { margin: 0; font-family: "Noto Serif SC", var(--null-serif); font-weight: 900; line-height: 1; writing-mode: vertical-rl; }
+.almanac__head h1 { font-size: 64px; letter-spacing: .1em; }
+.almanac__head p { margin: 0; font-size: 17px; line-height: 1.9; color: var(--null-muted); }
+.almanac__head mjx-container { color: var(--null-ink); }
+.almanac__motto { margin-top: 10px !important; padding-left: 14px; color: var(--null-ink) !important; border-left: 3px solid var(--null-ink); }
+.almanac__year { margin-bottom: 76px; }
+.almanac__year:last-of-type { margin-bottom: 0; }
+.almanac__year h2 { position: sticky; top: 32px; align-self: start; font-size: 42px; letter-spacing: .1em; }
+.almanac__months { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 36px; }
+.almanac__month { display: grid; grid-template-columns: 18px minmax(0, 1fr); column-gap: 14px; align-items: start; }
+.almanac__num { color: color-mix(in srgb, var(--null-faint) 62%, var(--null-paper)); font-size: 15px; line-height: 1.2; letter-spacing: .14em; writing-mode: vertical-rl; }
+.almanac__month.has-entries .almanac__num { color: var(--null-ink); font-weight: 600; }
+.almanac__month.is-now .almanac__num { width: max-content; margin: -6px 0 0 -5px; padding: 6px 4px; color: var(--null-paper); background: var(--null-ink); }
+.almanac__entries { display: grid; gap: 9px; }
+.almanac__entry { display: block; font-size: 16.5px; line-height: 1.45; text-decoration: none; }
+.almanac__entry:hover .almanac__title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .25em; }
+.almanac__entry:focus-visible, .journal-theme input:focus-visible + label { outline: 2px solid var(--null-ink); outline-offset: 3px; }
+.almanac__day { display: none; }
+.almanac__readout { position: fixed; right: 0; bottom: 0; left: 0; display: flex; gap: 24px; margin: 0; padding: 16px max(2rem, calc((100vw - 1180px) / 2)) 20px; font-size: 15px; line-height: 1.6; background: var(--null-paper); box-shadow: 0 -1px 0 var(--null-line); opacity: 0; pointer-events: none; transition: opacity .15s; }
+.almanac__readout.is-on { opacity: 1; }
+.almanac__readout b { flex: none; font-weight: 500; font-variant-numeric: tabular-nums; }
+.almanac__readout span { color: var(--null-muted); overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+@media (max-width: 1120px) {
+  .almanac__head, .almanac__year { column-gap: 40px; }
+  .almanac__months { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 56px 32px; }
+}
+@media (max-width: 900px), (hover: none) {
+  .almanac__readout { display: none; }
+  .almanac__head, .almanac__year { grid-template-columns: 56px minmax(0, 1fr); column-gap: 24px; }
+  .almanac__head { margin-bottom: 52px; }
+  .almanac__year { margin-bottom: 60px; }
+  .almanac__year h2 { top: 20px; font-size: 38px; }
+  .almanac__months { display: grid; grid-template-columns: 1fr; gap: 24px; }
+  .almanac__month { display: none; min-height: 0; }
+  .almanac__month.has-entries { display: grid; grid-template-columns: 18px minmax(0, 1fr); column-gap: 16px; }
+  .almanac__entries { gap: 14px; }
+  .almanac__title { display: block; line-height: 1.5; }
+  .almanac__day { display: block; margin-top: 3px; color: var(--null-muted); font-size: 13.5px; }
+}
+@media (max-width: 44.9375rem) {
+  .almanac { width: min(100% - 2.5rem, 1180px); padding: 44px 0 56px; }
+  .almanac__head h1 { font-size: 54px; }
+  .journal-masthead__links a { padding-block: 8px; }
+}
+
+.journal-body img.note-photo { width: auto; max-width: min(100%, 480px); max-height: 560px; height: auto; margin: 2rem 0 0; cursor: zoom-in; }
+.note-gallery { margin-top: 2rem; }
+.note-gallery p { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.note-gallery a { display: block; }
+.journal-body .note-gallery img { width: 100%; height: 100%; aspect-ratio: 1; margin: 0; object-fit: cover; cursor: zoom-in; }
+@media (max-width: 44.9375rem) { .note-gallery p { grid-template-columns: repeat(2, minmax(0, 1fr)); } }

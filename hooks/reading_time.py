@@ -39,6 +39,7 @@ def _is_article(page) -> bool:
 
 def _count(markdown: str):
     text = _FENCE_RE.sub(" ", markdown)
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)(\{[^}]*\})?", " ", text)
     text = _INLINE_CODE_RE.sub(" ", text)
     text = _HTML_TAG_RE.sub(" ", text)
     cjk = len(_CJK_RE.findall(text))

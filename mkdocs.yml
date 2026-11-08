@@ -87,6 +87,7 @@ extra_javascript:
 
 extra_css:
   - stylesheets/extra.css
+  - stylesheets/almanac.css
 
 markdown_extensions:
   - admonition
@@ -110,6 +111,5 @@ nav:
   - 月记: monthly/index.md
   - 生活: life/index.md
   - 技术: technology/index.md
-  - 分享: Share/index.md
   - 关于: about.md
   - 标签: tags.md
