@@ -87,7 +87,6 @@ extra_javascript:
 
 extra_css:
   - stylesheets/extra.css
-  - stylesheets/almanac.css
 
 markdown_extensions:
   - admonition
