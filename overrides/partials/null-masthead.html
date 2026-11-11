@@ -8,9 +8,12 @@
       <a href="{{ 'monthly/' | url }}"{% if page and page.url.startswith('monthly/') %} aria-current="page"{% endif %}>月记</a>
       <a href="{{ 'life/' | url }}"{% if page and page.url.startswith('life/') %} aria-current="page"{% endif %}>生活</a>
       <a href="{{ 'technology/' | url }}"{% if page and page.url.startswith('technology/') %} aria-current="page"{% endif %}>技术</a>
+      <a href="{{ 'songs/' | url }}"{% if page and page.url == 'songs/' %} aria-current="page"{% endif %}>片尾曲</a>
+      <a href="{{ 'now/' | url }}"{% if page and page.url == 'now/' %} aria-current="page"{% endif %}>此刻</a>
       <a href="{{ 'about/' | url }}"{% if page and page.url == 'about/' %} aria-current="page"{% endif %}>关于</a>
     </div>
 
+    <div class="journal-masthead__end">
     {% if config.theme.palette and not config.theme.palette is mapping %}
       <div class="journal-palette" aria-label="切换明暗主题">
         <form class="journal-theme" data-md-component="palette">
@@ -38,5 +41,6 @@
         {% include "partials/javascripts/palette.html" %}
       </div>
     {% endif %}
+    </div>
   </nav>
 </header>

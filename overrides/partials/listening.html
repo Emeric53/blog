@@ -1,0 +1,8 @@
+{# 最近在听：填了 Last.fm 才出现，内容由 javascripts/listening.js 实时读取。 #}
+{% set listening = config.extra.listening %}
+{% if listening and listening.lastfm_user and listening.lastfm_key %}
+  <div class="listening" data-lastfm hidden>
+    <h3 class="listening__head"><i aria-hidden="true"></i><span data-lastfm-state>最近在听</span></h3>
+    <ol class="listening__list" data-lastfm-recent="{{ limit | d(8) }}"></ol>
+  </div>
+{% endif %}

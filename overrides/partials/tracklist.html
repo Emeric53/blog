@@ -1,0 +1,20 @@
+{# 曲目单：songs 是 hooks/songs.py 收集的歌曲列表。 #}
+<ol class="tracklist">
+  {% for song in songs %}
+    <li class="track"{% if song.tint %} style="--tint: {{ song.tint }}"{% endif %}>
+      <span class="track__no">{{ "%02d" | format(loop.index) }}</span>
+      <a class="track__cover" href="{{ song.link }}" aria-label="在流媒体打开 {{ song.title }}">
+        {% if song.cover %}<img src="{{ song.cover }}" alt="" width="56" height="56" loading="lazy" decoding="async">{% endif %}
+      </a>
+      <p class="track__name">
+        <a href="{{ song.link }}">{{ song.title }}</a>
+        <span>{{ song.artist }}{% if song.kind == "专辑" %} · 专辑{% endif %}</span>
+      </p>
+      <a class="track__post" href="{{ song.post.url | url }}">
+        <span>{{ song.post.title }}</span>
+        <time>{{ song.post.date.strftime('%Y.%m') }}</time>
+      </a>
+      <span class="track__len">{{ song.length | d("", true) }}</span>
+    </li>
+  {% endfor %}
+</ol>

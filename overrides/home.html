@@ -1,41 +1,103 @@
 {% extends "main.html" %}
 
-{% block extrahead %}
-  {{ super() }}
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@900&amp;display=swap" rel="stylesheet">
-{% endblock %}
-
 {% block header %}{% endblock %}
 {% block tabs %}{% endblock %}
 {% block site_nav %}{% endblock %}
 
 {% block container %}
-  <div class="almanac-home">
-    {% include "partials/null-masthead.html" %}
-    <main class="almanac">
-      <header class="almanac__head">
-        <h1>零空间</h1>
-        <div class="almanac__say">
-          <p><span class="arithmatex">\(\text{Null}(A) = \{x \mid Ax = 0\}\)</span> —— 线性代数中，经变换后归于原点的向量集合。</p>
-          <p class="almanac__motto">这里是我的独立维度。挣脱面向他人的映射，让所有表达回归最初的原点。</p>
-        </div>
-      </header>
+  {% set labels = {"monthly": "月记", "life": "生活", "technology": "技术", "Share": "分享"} %}
+  {% set digits = "〇一二三四五六七八九" %}
+  {% set months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] %}
+  {% set space = config.extra.space %}
+  {# 没有脚本时是年历（data-view="list"）；脚本会把它换成可以拖动的空间。 #}
+  <div class="home" data-view="list">
+    <section class="space sky" aria-label="零空间：拖动和缩放来浏览全部文章">
+      <div class="sky__stars" data-sky-stars aria-hidden="true"></div>
+      <canvas class="sky__fall" data-sky-canvas aria-hidden="true"></canvas>
+      {% include "partials/null-masthead.html" %}
 
-      {% set labels = {"monthly": "月记", "life": "生活", "technology": "技术", "Share": "分享"} %}
-      {% set digits = "〇一二三四五六七八九" %}
-      {% set months = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"] %}
+      <div class="space__view"><div class="space__world" data-world>
+        <svg class="space__lines" viewBox="{{ -space.reach - 80 }} {{ -space.reach - 80 }} {{ 2 * space.reach + 160 }} {{ 2 * space.reach + 160 }}" style="--size: {{ 2 * space.reach + 160 }}" aria-hidden="true">
+          {% for month in range(12) %}
+            <line x1="0" y1="{{ -space.inner + 40 }}" x2="0" y2="{{ -space.reach - 40 }}" transform="rotate({{ month * 30 }})"/>
+          {% endfor %}
+          <polyline points="{{ space.path }}"/>
+        </svg>
+
+        <header class="space__origin">
+          <h1>零空间</h1>
+          <div>
+            <p class="space__formula">Null(<i>A</i>) = { <i>x</i> | <i>Ax</i> = 0 }</p>
+            <p>这里是我的独立维度。挣脱面向他人的映射，让所有表达回归最初的原点。</p>
+          </div>
+        </header>
+
+        {% for month in months %}
+          <span class="space__month at" style="--x: {{ ((space.reach + 78) * (loop.index0 * 30) | sin_deg) | round | int }}; --y: {{ (-(space.reach + 78) * (loop.index0 * 30) | cos_deg) | round | int }}" aria-hidden="true">{{ month }}</span>
+        {% endfor %}
+        {% for year in space.years %}
+          <span class="space__year at" style="--x: 0; --y: {{ year.y }}" aria-hidden="true">{% for d in year.year | string %}{{ digits[d | int] }}{% endfor %}</span>
+        {% endfor %}
+
+        {% for entry in config.extra._updates | reverse %}
+          <div class="node node--{{ entry.section }} at" style="--x: {{ entry.x }}; --y: {{ entry.y }}; --i: {{ loop.index0 }}">
+            <a href="{{ entry.url | url }}"
+               data-meta="{{ labels[entry.section] }} · {{ entry.date.strftime('%Y.%m.%d') }}{% if entry.place %} · {{ entry.place }}{% endif %} · {{ entry.words }} 字"
+               data-excerpt="{{ entry.excerpt | e }}">
+              {% if entry.thumb %}<img src="{{ entry.thumb | url }}" alt="" width="104" height="104" decoding="async" draggable="false">{% endif %}
+              <span>{{ entry.title }}</span>
+            </a>
+            {% for song in entry.songs %}{% if song.preview %}
+              <button class="node__song" type="button" data-preview="{{ song.preview }}" style="background-image: url({{ song.cover }})"
+                      title="{{ song.title }} — {{ song.artist }}" aria-label="试听 {{ song.title }}"></button>
+            {% endif %}{% endfor %}
+          </div>
+        {% endfor %}
+      </div></div>
+
+      <div class="space__hud">
+        <div class="space__info">
+          <p class="space__key">
+            <button type="button" class="key key--monthly" data-filter="monthly" aria-pressed="false">月记</button>
+            <button type="button" class="key key--life" data-filter="life" aria-pressed="false">生活</button>
+            <button type="button" class="key key--technology" data-filter="technology" aria-pressed="false">技术</button>
+          </p>
+          <p><span>{{ config.extra.here.name }}</span> <span data-sky="time"></span> · <span data-sky="weather"></span> · 访问 <span id="vercount_value_site_pv">—</span> · 访客 <span id="vercount_value_site_uv">—</span></p>
+        </div>
+        {# 在听：一枚小播放条，点开是最近几首。有 Last.fm 数据才出现。 #}
+        {% if config.extra.listening.lastfm_user and config.extra.listening.lastfm_key %}
+          <details class="playing" data-lastfm hidden>
+            <summary><i aria-hidden="true"></i><span><b data-lastfm-title></b><small data-lastfm-state>最近在听</small></span></summary>
+            <div class="playing__panel">
+              <ol class="playing__list" data-lastfm-recent="6" data-skip="1"></ol>
+              <a href="{{ 'songs/' | url }}">一共 <span data-lastfm-total>—</span> 首 →</a>
+            </div>
+          </details>
+        {% endif %}
+        <div class="space__tools">
+          <button type="button" data-space="random">随便看</button>
+          <button type="button" data-space="tour">巡游</button>
+          <button type="button" data-space="out" aria-label="缩小">−</button>
+          <button type="button" data-space="in" aria-label="放大">＋</button>
+          <button type="button" data-space="home">原点</button>
+          <button type="button" data-view-set="list">年历</button>
+        </div>
+      </div>
+      <p class="almanac__readout" aria-hidden="true"><b></b><span></span></p>
+    </section>
+
+    <main class="home__main">
+      <p class="home__switch"><button type="button" data-view-set="space">空间</button></p>
       {% for year in config.extra.almanac %}
-        <section class="almanac__year" aria-label="{{ year.year }} 年">
+        <section class="band almanac__year" aria-label="{{ year.year }} 年">
           <h2>{% for d in year.year | string %}{{ digits[d | int] }}{% endfor %}</h2>
           <div class="almanac__months">
             {% for month in year.months %}
-              <div class="almanac__month{% if month.entries %} has-entries{% endif %}" data-ym="{{ year.year }}-{{ month.month }}">
+              <div class="almanac__month{% if month.entries %} has-entries{% endif %}">
                 <span class="almanac__num">{{ months[month.month - 1] }}</span>
                 <div class="almanac__entries">
                   {% for entry in month.entries %}
-                    <a class="almanac__entry" href="{{ entry.url | url }}"
-                       data-meta="{{ labels[entry.section] }} · {{ entry.date.strftime('%Y.%m.%d') }}{% if entry.minutes %} · {{ entry.minutes }} 分钟{% endif %}"
-                       data-excerpt="{{ entry.excerpt | e }}">
+                    <a class="almanac__entry" href="{{ entry.url | url }}">
                       <span class="almanac__title">{{ entry.title }}</span>
                       <span class="almanac__day">{{ labels[entry.section] }} · {{ entry.date.day }} 日</span>
                     </a>
@@ -46,28 +108,10 @@
           </div>
         </section>
       {% endfor %}
-
-      <p class="almanac__readout" aria-hidden="true"><b></b><span></span></p>
     </main>
     {% include "partials/null-site-footer.html" %}
   </div>
-  <script>
-    (function () {
-      var root = document.querySelector(".almanac");
-      var meta = root.querySelector(".almanac__readout b");
-      var text = root.querySelector(".almanac__readout span");
-      var entries = root.querySelectorAll(".almanac__entry");
-      function show(entry) { meta.textContent = entry.dataset.meta; text.textContent = entry.dataset.excerpt; }
-      var bar = root.querySelector(".almanac__readout");
-      entries.forEach(function (e) {
-        ["mouseenter", "focus"].forEach(function (n) { e.addEventListener(n, function () { show(e); bar.classList.add("is-on"); }); });
-        ["mouseleave", "blur"].forEach(function (n) { e.addEventListener(n, function () { bar.classList.remove("is-on"); }); });
-      });
-      var now = new Date();
-      var cell = root.querySelector('[data-ym="' + now.getFullYear() + "-" + (now.getMonth() + 1) + '"]');
-      if (cell) cell.classList.add("is-now");
-    })();
-  </script>
+  <script src="{{ 'javascripts/space.js' | url }}"></script>
 {% endblock %}
 
 {% block footer %}{% endblock %}

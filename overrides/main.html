@@ -4,7 +4,11 @@
   {{ super() }}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&amp;family=Noto+Serif+SC:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Noto+Serif+SC:wght@400;500;600;900&amp;display=swap" rel="stylesheet">
+  {% set here = config.extra.here %}
+  {% if here %}
+    <script>window.NULL_HERE = { name: "{{ here.name }}", lat: {{ here.lat }}, lon: {{ here.lon }}, tz: "{{ here.tz }}", since: "{{ here.since }}" };</script>
+  {% endif %}
   {% if page and page.file and page.file.src_uri.split('/')[0] in ['monthly', 'life'] %}
     <meta name="robots" content="noindex">
   {% endif %}
@@ -28,7 +32,14 @@
 
 {% block scripts %}
   {{ super() }}
-  {% if page and (page.is_homepage or (page.content and "arithmatex" in page.content)) %}
+  {% set listening = config.extra.listening %}
+  {% if listening and listening.lastfm_user and listening.lastfm_key %}
+    <script>window.NULL_LASTFM = { user: "{{ listening.lastfm_user }}", key: "{{ listening.lastfm_key }}" };</script>
+    <script defer src="{{ 'javascripts/listening.js' | url }}"></script>
+  {% endif %}
+  {# 访问数：Vercount，页面上带 vercount_value_* 这几个 id 的元素会被填上数字 #}
+  <script defer src="https://events.vercount.one/js"></script>
+  {% if page and page.content and "arithmatex" in page.content %}
     <script src="{{ 'javascripts/mathjax.js' | url }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
   {% endif %}

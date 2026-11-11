@@ -1,9 +1,9 @@
 <footer class="journal-site-footer">
   <div class="journal-site-footer__inner">
-    <p>Nullspace · Menglei Liang</p>
+    <p>Nullspace · 梁梦磊{% if config.extra.places %} · 写于 {% for place in config.extra.places %}{{ place.name }}{% if not loop.last %} → {% endif %}{% endfor %}{% endif %}</p>
     <div>
       <a href="https://github.com/Emeric53">GitHub</a>
-      <span>2024—2026</span>
+      <span>2024—{{ build_date_utc.strftime('%Y') }}</span>
     </div>
   </div>
 </footer>

@@ -36,6 +36,15 @@ extra:
       link: https://github.com/Emeric53
     - icon: fontawesome/solid/envelope
       link: mailto:todayislml@gmail.com
+  # 我住过的地方。搬家时在末尾加一行：首页的天空、时间和天气会跟到新城市，
+  # 之后写的文章落款也会变成新地名，以前的文章保持原样。
+  places:
+    - { since: 2024-01-01, name: 北京, lat: 39.90, lon: 116.40, tz: Asia/Shanghai }
+    - { since: 2026-07-22, name: Albany, region: 纽约州, lat: 42.65, lon: -73.76, tz: America/New_York }
+  # 最近在听：填上 Last.fm 用户名和 API key 后，首页和「片尾曲」会显示实时听歌记录。
+  listening:
+    lastfm_user: "Emeric77"
+    lastfm_key: "1bd30dfa076bd45e0e0b6b0f4a23f0ce"
   giscus:
     repo: ""
     repo_id: ""
@@ -70,6 +79,7 @@ hooks:
 extra_javascript:
   - https://cdn.jsdelivr.net/npm/pangu@4.0.7/dist/browser/pangu.min.js
   - javascripts/pangu_init.js
+  - javascripts/sky.js
 
 extra_css:
   - stylesheets/extra.css
@@ -99,5 +109,7 @@ nav:
   - 月记: monthly/index.md
   - 生活: life/index.md
   - 技术: technology/index.md
+  - 片尾曲: songs.md
+  - 此刻: now.md
   - 关于: about.md
   - 标签: tags.md

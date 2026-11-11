@@ -1,0 +1,42 @@
+{% extends "main.html" %}
+
+{% block container %}
+  {% set here = config.extra.here %}
+  {% set songs = config.extra.songs %}
+  <div class="md-content list-page now-page" data-md-component="content">
+    <header class="list-head md-typeset">
+      {{ page.content }}
+    </header>
+    <section class="band now">
+      <h2>近况</h2>
+      <div class="band__body">
+        <dl class="now__grid">
+          <div>
+            <dt>在哪</dt>
+            <dd>{{ here.name }}{% if here.region %}，{{ here.region }}{% endif %}<small>到这里的第 <span data-days-since="{{ here.since }}">—</span> 天 · 当地 <span data-sky="time"></span> <span data-sky="phase"></span> · <span data-sky="weather"></span></small></dd>
+          </div>
+          <div>
+            <dt>在听</dt>
+            <dd>
+              {% if songs %}
+                <a href="{{ songs[0].link }}" data-lastfm-song>{{ songs[0].title }} — {{ songs[0].artist }}</a>
+                <small>{% if config.extra.listening.lastfm_user %}来自 Last.fm{% else %}最近一首片尾曲{% endif %}</small>
+              {% endif %}
+            </dd>
+          </div>
+          {% for item in page.meta.now %}
+            <div><dt>{{ item.label }}</dt><dd>{{ item.text }}</dd></div>
+          {% endfor %}
+        </dl>
+        {% set limit = 5 %}
+        {% include "partials/listening.html" %}
+        <p class="band__more">{{ page.meta.updated.strftime('%Y 年 %-m 月 %-d 日') }}更新 · 住过：{% for place in config.extra.places %}{{ place.name }}{% if not loop.last %} → {% endif %}{% endfor %}</p>
+      </div>
+    </section>
+  </div>
+  <script>
+    document.querySelectorAll("[data-days-since]").forEach(function (el) {
+      el.textContent = Math.floor((new Date() - new Date(el.dataset.daysSince + "T00:00:00")) / 86400000) + 1;
+    });
+  </script>
+{% endblock %}

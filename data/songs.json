@@ -1,0 +1,56 @@
+{
+  "apple:us:152197399": {
+    "artist": "Cheer Chen",
+    "cover": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/3c/a2/21/3ca22123-14d6-57f4-9e52-aa4573a05b07/mzm.clkcarof.jpg/300x300bb.jpg",
+    "link": "https://music.apple.com/us/album/%E5%90%89%E4%BB%96%E6%89%8B/152197399?uo=4",
+    "preview": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0c/1d/78/0c1d78f3-afdc-9789-0795-e716fd78aa4b/mzaf_7412352264649447414.plus.aac.p.m4a",
+    "seconds": 0,
+    "tint": "",
+    "title": "吉他手"
+  },
+  "spotify:album:3j2wCqNHYucmXgv9BSckvU": {
+    "artist": "Misi Ke",
+    "cover": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02ead526cc1833f7e864f23b7f",
+    "link": "https://open.spotify.com/album/3j2wCqNHYucmXgv9BSckvU",
+    "preview": "https://p.scdn.co/mp3-preview/620b16a41166abfbdc60e1d304b8a30e20710a9e",
+    "seconds": 0,
+    "tint": "#385860",
+    "title": "遊樂"
+  },
+  "spotify:track:1HA5rqn1k4YQnJ9XxsnApd": {
+    "artist": "Camila Cabello",
+    "cover": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0286bd6d30108e309239baa21b",
+    "link": "https://open.spotify.com/track/1HA5rqn1k4YQnJ9XxsnApd",
+    "preview": "https://p.scdn.co/mp3-preview/b5c64eb3c6743dad6d6c48041f42286c1c2b191d",
+    "seconds": 216,
+    "tint": "#084878",
+    "title": "GODSPEED"
+  },
+  "spotify:track:5Nf9yOpnskwYFRz7S4uwx0": {
+    "artist": "Camila Cabello",
+    "cover": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e028ef2562a1156ea6766e00ecb",
+    "link": "https://open.spotify.com/track/5Nf9yOpnskwYFRz7S4uwx0",
+    "preview": "https://p.scdn.co/mp3-preview/79c14c64bee33bf329e514628d397b8abec13029",
+    "seconds": 162,
+    "tint": "#105878",
+    "title": "Twentysomethings"
+  },
+  "spotify:track:646tj2NAztNqfAnsnbZEWr": {
+    "artist": "GRAY、Loco、SURAN、Eddy Kim",
+    "cover": "https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02fb330f98e38ab2d6c553d0de",
+    "link": "https://open.spotify.com/track/646tj2NAztNqfAnsnbZEWr",
+    "preview": "https://p.scdn.co/mp3-preview/0ca5f868d3152b2129ef005e0b7aad286ceeee5f",
+    "seconds": 249,
+    "tint": "#8c008d",
+    "title": "SOME MORE"
+  },
+  "spotify:track:6he8m8DhpU41ojTrSNXNHe": {
+    "artist": "马赫Mood",
+    "cover": "https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02c12fea4f81226fda569dcebc",
+    "link": "https://open.spotify.com/track/6he8m8DhpU41ojTrSNXNHe",
+    "preview": "https://p.scdn.co/mp3-preview/ece6333a7c66206ee993a8b8783cfe307f3b5545",
+    "seconds": 213,
+    "tint": "#1138d9",
+    "title": "等一朵雲減速"
+  }
+}

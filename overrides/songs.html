@@ -1,0 +1,38 @@
+{% extends "main.html" %}
+
+{% block container %}
+  {% set songs = config.extra.songs %}
+  <div class="md-content list-page songs-page" data-md-component="content">
+    <header class="list-head md-typeset">
+      {{ page.content }}
+    </header>
+    <section class="band">
+      <h2>曲目</h2>
+      <div class="band__body">
+        {% include "partials/tracklist.html" %}
+      </div>
+    </section>
+    {% set limit = 20 %}
+    {% if config.extra.listening.lastfm_user and config.extra.listening.lastfm_key %}
+      <section class="band" data-lastfm hidden>
+        <h2>在听</h2>
+        <div class="band__body">{% include "partials/listening.html" %}</div>
+      </section>
+      <section class="band" data-lastfm hidden>
+        <h2>常听</h2>
+        <div class="band__body charts">
+          {% for period, label in [("1month", "本月"), ("overall", "一直以来")] %}
+            <div>
+              <h3 class="listening__head">{{ label }}</h3>
+              <h4>歌手</h4>
+              <ol class="chart" data-lastfm-artists="{{ period }}" data-limit="6"></ol>
+              <h4>专辑</h4>
+              <ol class="chart chart--albums" data-lastfm-albums="{{ period }}" data-limit="6"></ol>
+            </div>
+          {% endfor %}
+          <p class="band__more">一共 <span data-lastfm-total>—</span> 首 · <a href="https://www.last.fm/user/{{ config.extra.listening.lastfm_user }}">Last.fm</a></p>
+        </div>
+      </section>
+    {% endif %}
+  </div>
+{% endblock %}

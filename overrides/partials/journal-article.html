@@ -43,6 +43,11 @@
       {% endif %}
       {{ page.content }}
 
+      {% set entry = page.meta._entry %}
+      {% if entry and entry.place %}
+        <p class="article-sign">{{ page.meta._date_zh }} · {{ entry.place }} · 昼长 {{ entry.daylight }} · 阅读 <span id="vercount_value_page_pv">—</span></p>
+      {% endif %}
+
       {% if page.meta._newer or page.meta._older %}
         <nav class="article-pager" aria-label="相邻文章">
           {% if page.meta._newer %}<a href="{{ page.meta._newer.url | url }}"><span>后一篇</span>{{ page.meta._newer.title }}</a>{% else %}<i></i>{% endif %}
